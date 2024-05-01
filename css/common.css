@@ -19,7 +19,7 @@ body {
     grid-template:
     'header header'100px
     'section main' auto
-    'footer footer'250px /
+    'footer footer'150px     /
     400px auto
     ;
 
@@ -64,7 +64,14 @@ body {
     height: 100%;
 }
 
-
+.footer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 10px;
+    align-items: center;
+        
+    
+}
 
 
 /* 
