@@ -10,27 +10,32 @@ html {
 
 body {
     min-height: 100%;
+    background-color: #ffffff;
 }
 
 .container-grid {
     min-width: 600px;
     display: grid;
-    gap: 20px;
+    gap: 2px;
     grid-template:
-    'header header'100px
+    'header header'170px
     'section main' auto
-    'footer footer'150px     /
+    'footer footer'150px    /
     400px auto
     ;
 
     .header {
         grid-area: header;
-        background-color: #005F86;
+        color: #ffffff;
+        background-image: url('Untitled\ design2.png');
+        background-position: center;
+        
     }
 
     .section {
         grid-area: section;
-        background-color: #DFF5FF;
+       /*background-color: rgb(26, 61, 129);*/
+       background-color: rgb(62, 95, 158);
     }
 
     .main {
@@ -40,10 +45,18 @@ body {
 
     .footer {
         grid-area: footer;
-        background-color: #B6B6B6;
+        background-color: rgb(    219, 207, 190  );
     }
 }
-
+@media only screen and (max-width: 767px) {
+    .container-grid {
+        grid-template:
+            'header'
+            'section'
+            'main'
+            'footer';
+        }
+    }
 .header { 
     display: flex;
     flex-direction: column;
@@ -52,25 +65,43 @@ body {
 }
 
 .main {
-    margin-right: 20px;
     display: flex;
     flex-direction: column;
     align-items: end;
 }
+.section{
+    display: flex;
+    justify-content: center;
+}
+ section li{
+    margin: 10px 0px;
+    padding: 10px 30px;
+    border: 1px solid rgb(165, 159, 159);
+    border-radius:12px;
+    list-style: none;
+}
+section li:hover {
+    background-color:rgb(75, 179, 244) ;
+}
 
+section li a{
+    text-decoration: none;
+    color: rgb(220, 214, 214);
+}
 .main main {
-    border: 1px solid red;
+    
     width: 100%;
     height: 100%;
 }
 
 .footer{
+    color:black;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    padding: 10px;
+    margin: 0 2px;
+    grid-template-columns: repeat(3,1fr);
     align-items: center;
-        
-    
+    display: flex;
+    justify-content: space-around;
 }
 
 
