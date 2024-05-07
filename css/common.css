@@ -96,9 +96,7 @@ section li a{
 
 .footer{
     color:black;
-    display: grid;
     margin: 0 2px;
-    grid-template-columns: repeat(3,1fr);
     align-items: center;
     display: flex;
     justify-content: space-around;

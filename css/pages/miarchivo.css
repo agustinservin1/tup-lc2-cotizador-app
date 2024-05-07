@@ -1,0 +1,38 @@
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+.tabla {
+    padding: 10px;
+    overflow: auto;
+    border-collapse: collapse;
+}
+
+.titulo-tabla {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.titulo-tabla H2{
+    
+}
+.fa-print{
+    font-size: 30px;
+}
+
+.contenido-tabla th,
+.contenido-tabla td {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+
+.contenido-tabla th {
+    background-color: rgb(62, 95, 158);
+}
+.fila-fecha {
+    background-color: rgb(218,207,190); /* REVISAR COMO HACER QUE CADA FECHA SE COLOREs*/
+    text-align: start;
+}
