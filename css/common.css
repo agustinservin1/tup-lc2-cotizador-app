@@ -68,6 +68,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: end;
+    margin: 0 40px 
 }
 .section{
     display: flex;
@@ -101,9 +102,48 @@ section li a{
     display: flex;
     justify-content: space-around;
 }
+/*CODIGO PIZARRA DE COTIZACIONES */
+main h1{
+    text-align: center;
+}
+.combo-box{
+    background-color: rgb(227, 223, 223);
+    padding: 10px;
+    max-width: 500px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+.combo-box select{
+    padding: 10px 20px;
+}
+.contenedor-cotizaciones{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(6,70px);
+    gap: 20px;
+    background-color: rgb(239, 232, 232);
+    padding: 20px;
+    margin-top: 0px;
+    max-width: auto;
+    max-height: 460px;
+    overflow: auto;
+}
+.precio{
+    text-align: center;
+    margin: 20px;
+}
+.cotizaciones{
+    display: flex;
+    justify-content: end;
+}
 
+.columna{
+    background-color: rgb(253, 249, 249);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    padding: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Agrega sombreado */
+}
 
-/* 
-@media screen (max-width 768px) {
-    
-} */
