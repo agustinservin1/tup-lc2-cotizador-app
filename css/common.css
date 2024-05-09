@@ -18,7 +18,7 @@ body {
     display: grid;
     gap: 2px;
     grid-template:
-    'header header'170px
+    'header header'100px
     'section main' auto
     'footer footer'150px    /
     400px auto
@@ -27,7 +27,7 @@ body {
     .header {
         grid-area: header;
         color: #ffffff;
-        background-image: url('Untitled\ design2.png');
+        background-image: url('../img/Untitled\ design2.png');
         background-position: center;
         
     }
@@ -89,6 +89,15 @@ section li a{
     text-decoration: none;
     color: rgb(220, 214, 214);
 }
+
+.main-link span {
+    font-weight: 900;
+}
+
+.main-link a {
+    color: black;
+}
+
 .main main {
     
     width: 100%;

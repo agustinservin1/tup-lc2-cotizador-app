@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/pages/informe.css">
+    <title>Document</title>
+</head>
+
+<body class="container-grid">
+
+    <header class="header">
+        <h1>DolarNet</h1>
+    </header>
+    <section class="section">
+        <nav>
+            <ul>
+                <li class="btn-inicio"><a href="index.html">Inicio</a></li>
+                <li><a href="miarchivo.html">Mi archivo</a></li>
+                <li><a href="informes.html">Informes</a></li>
+                <li><a href="contacto.html">Contactenos</a></li>
+            </ul>
+        </nav>
+    </section>
+    <div class="main">
+        <p class="main-link"><span>Useted esta aqui: </span><a href="index.html">Inicio</a>/ Informes</p><a
+            href="#"></a>
+        <main class="main-informe">
+            <div class="combo-box">
+                <label for="moneda">Selecciona una moneda:</label>
+                <select id="moneda">
+                    <option value="TODAS">TODAS</option>
+                    <option value="Dólar Oficial">Dólar Oficial</option>
+                    <option value="Dólar Blue">Dólar Blue</option>
+                    <option value="Dólar Bolsa (MEP)">Dólar Bolsa (MEP)</option>
+                    <option value="Dólar Contado con Liqui (CCL)">Dólar Contado con Liqui (CCL)</option>
+                    <option value="Dólar Tarjeta">Dólar Tarjeta</option>
+                    <option value="Dólar Mayorista">Dólar Mayorista</option>
+                    <option value="Dólar Cripto">Dólar Cripto</option>
+                    <option value="Euro">Euro</option>
+                    <option value="Real Brasileño">Real Brasileño</option>
+                    <option value="Peso Chileno">Peso Chileno</option>
+                    <option value="Peso Uruguay">Peso Uruguay</option>
+                </select>
+            </div>
+
+            <div>
+                <div class="compartir-info">
+                    <i class="fa-solid fa-print" style="color: #000000;"></i>
+                    <p>Compartir información</p><!-- aca puede ir etiqueta a -->
+                </div>  
+                
+                <table class="table-informes">
+                    <thead>
+                        <tr>
+                            <th>MONEDA</th>
+                            <th>FECHA</th>
+                            <th>COMPRA</th>
+                            <th>VENTA</th>
+                            <th>VARIACION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="moneda-table" colspan="5">Dolar Blue</td>    
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>15/04/2024</td>
+                            <td>$995</td>
+                            <td>$1050</td>
+                            <td><i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>15/04/2024</td>
+                            <td>$995</td>
+                            <td>$1050</td>
+                            <td><i class="fa-solid fa-arrow-trend-down" style="color: #ff0000;"></i></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>15/04/2024</td>
+                            <td>$9953</td>
+                            <td>$1050</td>
+                            <td><i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>15/04/2024</td>
+                            <td>$995</td>
+                            <td>$1050</td>
+                            <td><i class="fa-solid fa-arrow-trend-up" style="color: #63E6BE;"></i></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>15/04/2024</td>
+                            <td>$995</td>
+                            <td>$1050</td>
+                            <td><i class="fa-solid fa-arrow-trend-down" style="color: #ff0000;"></i></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="footer-table" colspan="5"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="grafica-informes">
+                <h3>Informes</h3>
+                <img src="img/grafico.png" alt="">
+            </div>
+            <div class="formulario-datos">
+                <h3>Datos del destinatario</h3>
+                <label for="name">Nombre</label>
+                <input type="text" name="name" id="name" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+                <button>Enviar</button>
+            </div>
+        </main>
+    </div>
+
+
+    <footer class="footer">
+        <ul>
+            <h4>Institucional</h4>
+            <li>¿Quienes somos?</li>
+            <li>Socios estratégicos</li>
+            <li>Trabaje con nosotros</li>
+            <li>Ayuda</li>
+        </ul>
+        <ul>
+            <h4>Accesos</h4>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="miarchivo.html">Mi Archivo</a></li>
+            <li><a href="informes.html">Informes</a></li>
+            <li><a href="contacto.html">Contáctenos</a></li>
+        </ul>
+        <div>
+            <h4>Contacto</h4>
+            <p>Universidad Técnologica Nacional</p>
+            <p>Zeballos 1341 - S2000BQA -</p>
+            <p>Rosario</p>
+            <p>0341-4481871</p>
+            <a href="#">¡Escribanos!</a>
+        </div>
+        <div>
+            <h4>Desarrollado por</h4>
+            <p>Federico Ramos</p>
+            <p>Joaquín Guerrero</p>
+            <p>Agustín Servin</p>
+        </div>
+        <p></p>
+    </footer>
+
+
+</body>
+
+</html>
