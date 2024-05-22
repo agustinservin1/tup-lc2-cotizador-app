@@ -2,12 +2,15 @@ table {
     border-collapse: collapse;
     width: 100%;
     text-align: center;
+
 }
 
 .tabla {
     padding: 10px;
     overflow: auto;
     border-collapse: collapse;
+    box-shadow: 0px 14px 16px #0000001f;
+
 }
 
 .titulo-tabla {
@@ -20,23 +23,19 @@ table {
     font-size: 30px;
 }
 
-.contenido-tabla {
-    font-weight: bold;
-}
-
 .contenido-tabla th,
 .contenido-tabla td {
     border: 1px solid #000;
     padding: 8px;
-
-
+    
 }
 
 .contenido-tabla th {
-    background-color: rgb(62, 95, 158);
+    background-color: #FCFCFD;
+    
 }
 
 .fila-fecha {
-    background-color: rgb(239, 232, 232);
+    background-color: #f7f7f7f7;
     text-align: start;
 }
