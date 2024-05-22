@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/common.css">
     <title>Document</title>
 </head>
@@ -15,18 +18,26 @@
     </header>
     <section class="section">
         <nav>
+            <h4 class="menu-nav">MENU</h4>
             <ul>
-                <li class="btn-inicio"><a href="index.html">Inicio</a></li>
-                <li><a href="miarchivo.html">Mi archivo</a></li>
-                <li><a href="informes.html">Informes</a></li>
-                <li><a href="contacto.html">Contactenos</a></li>
+                <li><a href="index.html" class="btn-select"> <i class="fa-solid fa-house"></i>Inicio</a></li>
+                <li><a href="miarchivo.html"><i class="fa-solid fa-box-archive"></i>Mi archivo</a></li>
+                <li><a href="informes.html"><i class="fa-solid fa-file"></i>Informes</a></li>
+                <li><a href="contacto.html"><i class="fa-solid fa-address-book"></i>Contacto</a></li>
             </ul>
         </nav>
+        <div class="comment-user">
+            <img src="img/profile-user.webp" alt="Foto de usuario">
+            <div class="info-usuario">
+                <p class="nombre">Roger Medina</p>
+                <p class="opinion">Tiene muy buen servicio y las cotizaciones son siempre correctas</p>
+            </div>
+        </div>
     </section>
     <div class="main">
-        <a href="#" class="main-link">Link migas de pan</a>
+        <p class="main-link"><span>Useted esta aqui: </span>Inicio</p>
         <main>
-            <h1>Pizarra de Cotizaciones</h1>
+            <h2>Pizarra de Cotizaciones</h2>
             <div class="combo-box">
                 <label for="moneda">Selecciona una moneda:</label>
                 <select id="moneda">
@@ -44,157 +55,143 @@
                     <option value="Peso Uruguay">Peso Uruguay</option>
                 </select>
             </div>
-            <p>Datos Actualizados al 15/04/2024</p>
+            <p class="updated-data">Datos Actualizados al 15/04/2024</p>
             <div class="contenedor-cotizaciones">
                 <div class="columna">
                     <h3>Dolar Oficial</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Dólar Blue</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Dólar Bolsa (MEP)</h3>
-                    <div class="cotizaciones">     
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3> Dolar CCL</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna ">
                     <h3>Dólar Tarjeta</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Dólar Mayorista</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Dólar Cripto</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Euro</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Real Brasileño</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Peso Chileno</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="columna">
                     <h3>Peso Uruguay</h3>
-                    <div class="cotizaciones">
-                        <div class="precio">
-                            <p>Compra</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="precio">
-                            <p>Venta</p>
-                            <p>$150</p>
-                        </div>
+                    <div class="precio">
+                        <p class="compra">Compra</p>
+                        <p>$150</p>
                     </div>
+                    <div class="precio">
+                        <p class="compra">Venta</p>
+                        <p>$150</p>
+                    </div>
+                    <i class="fa-solid fa-star"></i>
                 </div>
             </div>
-
         </main>
     </div>
-                    
-
     <footer class="footer">
         <ul>
             <h4>Institucional</h4>
