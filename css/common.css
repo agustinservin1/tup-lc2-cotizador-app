@@ -16,10 +16,11 @@ body {
 .container-grid {
     grid-template:
     'header header'100px
-    'section main' calc(100vh - 92px)
+    'section main' auto
     'footer footer'150px/
     270px auto;
 }
+
 .header {
     grid-area: header;
     color: #ffffff;
@@ -32,6 +33,7 @@ body {
 }
 
 .section {
+    min-height: calc(100vh - 92px);
     grid-area: section;
     background-color: #fff;
 	display: flex;
@@ -42,6 +44,8 @@ body {
 }
 
 .main {
+    padding: 24px;
+    min-height: calc(100vh - 92px);
     grid-area: main;
     display: flex;
     flex-direction: column;

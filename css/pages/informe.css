@@ -2,43 +2,54 @@
     border-radius: 10px;
     width: 100%;
     height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
 }
 
 .compartir-info {
     display: flex;
     flex-direction: row;
-    padding: 24px 0px;
+    margin-top: 32px;
+    padding: 8px 0px;
 }
 
 .compartir-info i {
     margin-right: 12px;
 }
 
+.container-informes-table {
+    border: 1px solid green;
+    width: 70%;
+}
+
 .table-informes {
-    max-height: 100px;
-    overflow-y: auto; 
-    max-width: 90%;
-    overflow: hidden;
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 28px;
+    box-shadow: 0px 4px 16px #0000001f;
+    min-width: 600px;
+    max-width: 800px;
+    padding: 24px;
 }
 
-
-.table-informes thead,
-.table-informes tfoot {
-    background-color: rgb(147, 147, 244);
+.nombre-moneda {
+    text-align: left;
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 12px;
 }
 
-.table-informes tbody tr .moneda-table {
-    background-color: #ccc9c9;
-    text-align: start;
+.titulo-seccion-informes td {
+    text-align: center;
+    color: #b1b1b1;
+    padding: 0px 12px;
 }
 
-.table-informes th,
-.table-informes td {
-    border-left: 1px solid #000;
-    padding: 8px; 
+.table-informes tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #8d8c8c2a;
     text-align: center;
 }
 
@@ -57,23 +68,37 @@
 }
 
 .formulario-datos {
-    border-radius: 12px;
+    border-radius: 28px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
     max-width: 500px;
     padding: 24px;
-    background-color: rgb(201, 201, 255);
+    background-color: #ffffff;
+    box-shadow: 0px 4px 16px #0000001f;
+}
+
+.formulario-datos h3,
+.formulario-datos label {
+    text-align: left;
+    width: 90%;
 }
 
 .formulario-datos input {
     height: 32px;
+    width: 90%;
 }
 
 .formulario-datos button {
-    height: 32px;
-    border-radius: 4px;
-    border: 1px solid #b1b1b1;
-    background-color: #fff;
+    height: 42px;
+    width: 300px;
+    border-radius: 12px;
+    border: none;
+    background-color: #197BBD;
+    color: #fff;
+    margin-top: 12px;
+    font-size: 18px;
+    letter-spacing: 1.4px;
 }
-
