@@ -29,7 +29,7 @@ body {
 .container-grid {
     grid-template:
         'header header' 100px
-        'section main' calc(100vh - 92px)
+        'section main' auto
         'footer footer' 150px /
         270px auto;
 }
@@ -53,6 +53,10 @@ body {
     align-items: center;
     justify-content: space-between;
     border-right: 1px solid var(--color-borde);
+}
+
+main {
+    min-height: calc(100vh - 92px);
 }
 
 .main {
@@ -185,6 +189,11 @@ nav ul li a i:hover {
     color: var(--color-texto);
 }
 
+.main-link a {
+    color: var(--color-texto);
+}
+
+
 .main-link span {
     font-weight: 500;
 }
@@ -292,7 +301,8 @@ main h2 {
         grid-template:
             'header' 100px
             'section'
-            'main' auto/
+            'main' auto
+            'footer'/
             100%;
     }
 
@@ -321,7 +331,7 @@ main h2 {
     }
 
     .combo-box {
-        width: 100%;
+        max-width: 100%;
         margin-top: 16px;
     }
 

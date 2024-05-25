@@ -15,7 +15,6 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
-    overflow: auto;
 }
 
 .compartir-info {
@@ -111,4 +110,16 @@
     margin-top: 12px;
     font-size: 18px;
     letter-spacing: 1.4px;
+}
+
+@media (max-width: 600px){
+    .main-informe {
+        grid-template-columns: 1fr;
+    }
+
+    .table-informes,
+    .grafica-informes img,
+    .formulario-datos {
+        max-width: 95%;
+    }
 }

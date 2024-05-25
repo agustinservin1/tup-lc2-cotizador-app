@@ -1,5 +1,6 @@
 :root {
     --color-primario: #197BBD;
+    --color-hover: #339be0;
     --color-secundario: #0000001f;
     --color-fondo: #fff;
 }
@@ -19,37 +20,48 @@
 .formulario {
     display: flex;
     flex-direction: column;
-    flex: 1 0 50%;
     background-color: var(--color-fondo);
     border-radius: 28px;
     box-shadow: 0px 4px 16px var(--color-secundario);
-    min-width: 700px;
+    min-width: 600px;
     padding: 24px;
 }
 
 .formulario h3 {
     text-align: center;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .contenido-formulario {
     display: flex;
     flex-direction: column;
+    align-self: center;
+    justify-content: center;
 }
 
 .contenido-formulario input,
-label,
 textarea {
     font-size: 20px;
     padding: 5px;
     border-radius: 5px;
+    border: 1px solid var(--color-secundario);
 }
 
 .btn {
     font-size: 20px;
     border-radius: 5px;
     padding: 5px;
+    width: 240px;
+    height: 42px;
     background-color: var(--color-primario);
     color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color-hover);
 }
 
 .botones {
