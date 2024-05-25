@@ -1,3 +1,11 @@
+:root {
+    --color-primario: #197BBD;
+    --color-secundario: #b1b1b1;
+    --color-borde: #8d8c8c2a;
+    --color-sombra: #0000001f;
+    --color-fondo: #fff;
+}
+
 .main-informe {
     border-radius: 10px;
     width: 100%;
@@ -7,6 +15,7 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
+    overflow: auto;
 }
 
 .compartir-info {
@@ -21,14 +30,14 @@
 }
 
 .container-informes-table {
-    border: 1px solid green;
+    border: 1px solid var(--color-primario);
     width: 70%;
 }
 
 .table-informes {
-    background-color: #fff;
+    background-color: var(--color-fondo);
     border-radius: 28px;
-    box-shadow: 0px 4px 16px #0000001f;
+    box-shadow: 0px 4px 16px var(--color-sombra);
     min-width: 600px;
     max-width: 800px;
     padding: 24px;
@@ -43,13 +52,13 @@
 
 .titulo-seccion-informes td {
     text-align: center;
-    color: #b1b1b1;
+    color: var(--color-secundario);
     padding: 0px 12px;
 }
 
 .table-informes tbody td {
     padding: 8px 12px;
-    border-bottom: 1px solid #8d8c8c2a;
+    border-bottom: 1px solid var(--color-borde);
     text-align: center;
 }
 
@@ -65,7 +74,7 @@
     max-height: 400px;
     height: 300px;
     border-radius: 28px;
-    box-shadow: 0px 4px 16px #0000001f;
+    box-shadow: 0px 4px 16px var(--color-sombra);
 }
 
 .formulario-datos {
@@ -77,8 +86,8 @@
     gap: 12px;
     max-width: 500px;
     padding: 24px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 16px #0000001f;
+    background-color: var(--color-fondo);
+    box-shadow: 0px 4px 16px var(--color-sombra);
 }
 
 .formulario-datos h3,
@@ -97,7 +106,7 @@
     width: 300px;
     border-radius: 12px;
     border: none;
-    background-color: #197BBD;
+    background-color: var(--color-primario);
     color: #fff;
     margin-top: 12px;
     font-size: 18px;

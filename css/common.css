@@ -1,24 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+    --color-primario: #197BBD;
+    --color-secundario: #0000001f;
+    --color-fondo: #FCFCFD;
+    --color-borde: #0824311f;
+    --color-texto: #000000;
+    --color-texto-secundario: #273240;
+    --color-seleccionado: #F0F7FF;
+    --color-enlace: #197BBD;
+    --color-icono: #A6ABC8;
+    --color-comentario-borde: #197BBD;
+}
+
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
     min-height: 100vh;
-    background-color:#FCFCFD;
+    background-color: var(--color-fondo);
     font-family: "Poppins", sans-serif;
     display: grid;
 }
 
 .container-grid {
     grid-template:
-    'header header'100px
-    'section main'  calc(100vh - 92px)
-    'footer footer'150px/
-    270px auto;
+        'header header' 100px
+        'section main' calc(100vh - 92px)
+        'footer footer' 150px /
+        270px auto;
 }
 
 .header {
@@ -35,11 +48,11 @@ body {
 .section {
     grid-area: section;
     background-color: #fff;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-    border-right:  1px solid #0000001e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 1px solid var(--color-borde);
 }
 
 .main {
@@ -54,83 +67,83 @@ body {
 .footer {
     grid-area: footer;
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    padding-left: 200px;
     background-color: #f7f7f7f7;
     border-top: 1px solid #dfdfdff7;
-    padding-top: 24px;
+    padding-top: 10px;
 }
 
 /* Hasta aca llega el contenido de cada seccion.*/
 
 nav {
-	margin: 32px 0px;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    margin: 32px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu-nav {
-	font-size: 16px;
-	font-weight: 600;
-	color: #082431ad;
-	width: 80%;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+    width: 80%;
 }
 
 nav ul {
-	list-style: none;
-	width: 90%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    list-style: none;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 nav ul li {
-	width: 80%;
-	gap: 12px;
-	height: 46px;
-	width: 200px;
+    width: 80%;
+    gap: 12px;
+    height: 46px;
+    width: 200px;
 }
 
 nav ul li a {
-	text-decoration: none;
-	font-size: 16px;
-	color: #273240;
-	width: 100%;
-	height: 100%;
-	padding: 0px 12px;
-	display: flex;
-	align-items: center;
-	justify-content: start;
-	gap: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    color: var(--color-texto);
+    width: 100%;
+    height: 100%;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
 }
 
 nav ul li i {
-	color: #A6ABC8;
-	font-size: 20px;
+    color: var(--color-icono);
+    font-size: 20px;
 }
 
 nav ul li a:active,
 nav ul li a i:hover {
-	background-color: #F0F7FF;
-	border-radius: 5px;
-	color: #197BBD;
+    background-color: var(--color-seleccionado);
+    border-radius: 5px;
+    color: var(--color-enlace);
 }
 
 .btn-select {
-	background-color: #F0F7FF;
-	border-radius: 5px;
-	color: #197BBD;
+    background-color: var(--color-seleccionado);
+    border-radius: 5px;
+    color: var(--color-enlace);
 }
 
 .btn-select i {
-	color: #197BBD;
+    color: var(--color-enlace);
 }
 
 .comment-user {
-    border: 1px solid #197BBD ;
+    border: 1px solid var(--color-comentario-borde);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,12 +153,12 @@ nav ul li a i:hover {
     border-radius: 16px;
 }
 
-.comment-user img{
+.comment-user img {
     max-height: 80px;
     max-width: 80px;
     object-fit: cover;
     border-radius: 16px;
-    border: 1px solid #0824311f;
+    border: 1px solid var(--color-borde);
 }
 
 .info-usuario {
@@ -168,7 +181,7 @@ nav ul li a i:hover {
 .main-link {
     font-size: 14px;
     margin-right: 20px;
-    color: #000000;
+    color: var(--color-texto);
 }
 
 .main-link span {
@@ -186,24 +199,24 @@ main h2 {
     margin-left: 32px;
 }
 
-
-/*CODIGO PIZARRA DE COTIZACIONES */
-.combo-box{
+.combo-box {
     background-color: #fff;
     width: 500px;
     height: 60px;
     margin-top: 32px;
     border-radius: 16px;
-    box-shadow: 0px 4px 16px #0000001f;
+    box-shadow: 0px 4px 16px var(--color-secundario);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
 }
-.combo-box select{
+
+.combo-box select {
     height: 32px;
     border-radius: 8px;
 }
+
 .updated-data {
     margin-top: 32px;
     font-size: 14px;
@@ -211,27 +224,27 @@ main h2 {
     text-align: end;
     padding: 0px 20px;
 }
-.contenedor-cotizaciones{
+
+.contenedor-cotizaciones {
     max-height: 460px;
     background-color: #fff;
     overflow: auto;
     border-radius: 16px;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6);
-    box-shadow: 0px 14px 16px #0000001f;
+    box-shadow: 0px 14px 16px var(--color-secundario);
     margin-bottom: 10px;
 }
 
-
-.columna{
+.columna {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     background-color: #ffffff;
     margin: 20px;
-    border-bottom: 1px solid #0824311f;
+    border-bottom: 1px solid var(--color-borde);
 }
 
 .columna h3 {
@@ -250,15 +263,16 @@ main h2 {
 .precio .compra {
     color: #a8b3ac;
 }
-.fav-btn{
+
+.fav-btn {
     background: none;
-    border:none;
+    border: none;
     cursor: pointer;
 }
 
 .columna i {
     padding-right: 32px;
-    color: #197BBD;
+    color: var(--color-primario);
     font-size: 22px;
 }
 
@@ -266,7 +280,8 @@ main h2 {
     list-style: none;
 }
 
-/* Media Query para móviles */
+/* Media Query para móviles*/
+
 @media (max-width: 600px) {
     body {
         font-size: 14px;
