@@ -6,6 +6,12 @@
     --color-fondo: #fff;
 }
 
+.main h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 32px;
+}
+
 .main-informe {
     border-radius: 10px;
     width: 100%;
