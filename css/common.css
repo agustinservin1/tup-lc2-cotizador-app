@@ -96,7 +96,8 @@ nav ul li {
 	width: 200px;
 }
 
-nav ul li a {
+nav ul li a,
+.btn-select {
 	text-decoration: none;
 	font-size: 16px;
 	color: #273240;
