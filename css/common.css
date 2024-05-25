@@ -11,6 +11,8 @@
     --color-enlace: #197BBD;
     --color-icono: #A6ABC8;
     --color-comentario-borde: #197BBD;
+    --color-hover: #339be0;
+
 }
 
 * {
@@ -125,6 +127,7 @@ nav ul li a,
     justify-content: start;
     gap: 12px;
 }
+
 
 nav ul li i {
     color: var(--color-icono);

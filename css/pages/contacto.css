@@ -5,16 +5,28 @@
     --color-fondo: #fff;
 }
 
-.main {
+.main-contacto {
     width: 100%;
 }
-
-.contacto-container {
+.main h2{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+.div-contenedor {
     display: flex;
-    width: 100%;
-    max-width: 1100px;
+    flex-direction: column;
+    align-items: center;
     font-size: 18px;
-    padding-top: 50px;
+    padding-top: 40px;
+    gap: 40px;
+}
+
+.elementos-flex{
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    
 }
 
 .formulario {
@@ -23,8 +35,9 @@
     background-color: var(--color-fondo);
     border-radius: 28px;
     box-shadow: 0px 4px 16px var(--color-secundario);
-    min-width: 600px;
+    min-width: 300px;
     padding: 24px;
+    height: 60vmin;
 }
 
 .formulario h3 {
@@ -38,14 +51,18 @@
     flex-direction: column;
     align-self: center;
     justify-content: center;
+    height: 100vmin;
 }
 
 .contenido-formulario input,
 textarea {
     font-size: 20px;
-    padding: 5px;
+    padding: 20px;
     border-radius: 5px;
     border: 1px solid var(--color-secundario);
+}
+label{
+    padding: 15px;
 }
 
 .btn {
@@ -58,7 +75,8 @@ textarea {
     color: #fff;
     border: none;
     cursor: pointer;
-}
+    margin-top: 20px;
+    }
 
 .btn:hover {
     background-color: var(--color-hover);
@@ -71,21 +89,17 @@ textarea {
     padding: 10px;
 }
 
-.info {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    flex: 1 0 50%;
-    padding: 30px;
-    justify-content: space-around;
-}
-
 .datos-contacto {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     border-radius: 28px;
+    padding: 20px;
     box-shadow: 0px 4px 16px var(--color-secundario);
+    height: 200px;
+    align-self: center;
+
 }
 
 .datos-contacto img {
@@ -102,4 +116,10 @@ textarea {
 
 .contenido-contacto ul li {
     list-style: none;
+}
+
+.texto-dolarapi{
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 14px;
 }
