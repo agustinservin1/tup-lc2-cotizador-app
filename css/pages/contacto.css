@@ -75,7 +75,7 @@ label{
     color: #fff;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 15px;
     }
 
 .btn:hover {
@@ -86,7 +86,6 @@ label{
     display: flex;
     justify-content: end;
     gap: 10px;
-    padding: 10px;
 }
 
 .datos-contacto {
@@ -122,4 +121,34 @@ label{
     padding: 10px;
     margin-top: 20px;
     font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .main-contacto{
+        margin-top: 30px;
+    }
+    .div-contenedor {
+        display: flex;
+        max-width: 80%;
+        margin: auto auto;
+    }
+
+    .elementos-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formulario,
+    .datos-contacto {
+        width: 90%
+    }
+
+    .formulario {
+        height: auto; 
+    }
+
+    .datos-contacto {
+        height: auto; 
+    }
+ 
 }
