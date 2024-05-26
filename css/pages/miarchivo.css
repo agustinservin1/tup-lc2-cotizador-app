@@ -1,3 +1,14 @@
+/*Tabla de colores*/
+:root {
+    --color-principal: #197BBD;
+    --color-texto-claro: #b1b1b1;
+    --color-texto-oscuridad: #000000;
+    --color-fondo: #fff;
+    --color-borde: #8d8c8c2a;
+    --color-sombra: #0000001f;
+}
+
+/*Contenido Principal del main mi archivo*/
 .tabla {
     width: 100%;
     height: 100%;
@@ -16,17 +27,17 @@
     padding: 12px;
     text-align: left;
     font-size: 24px;
-    color: #197BBD;
+    color: var(--color-principal);
     cursor: pointer;
 }
 
 .contenido-tabla {
     border-radius: 29px;
     padding: 24px;
-    background-color: #fff;
+    background-color: var(--color-fondo);
     max-height: 500px;
     overflow: auto;
-    box-shadow: 0px 14px 16px #0000001f;
+    box-shadow: 0px 14px 16px var(--color-sombra);
 }
 
 .contenido-tabla table {
@@ -35,23 +46,23 @@
 }
 
 .contenido-tabla table thead tr th {
-    color: #b1b1b1;
+    color: var(--color-texto-claro);
     font-weight: 400;
 }
 
 .contenido-tabla table tbody .datos td {
     text-align: center;
     padding: 12px;
-    border-bottom: 1px solid #8d8c8c2a;
+    border-bottom: 1px solid var(--color-borde);
 }
 
 .datos .moneda {
-    color: #000000;
+    color: var(--color-texto-oscuridad);
     font-weight: 600;
 }
 
 .fila-fecha {
-    color: #197BBD;
+    color: var(--color-principal);
     padding: 12px;
 }
 

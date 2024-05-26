@@ -1,3 +1,4 @@
+/*Tabla de colores*/
 :root {
     --color-primario: #197BBD;
     --color-hover: #339be0;
@@ -5,6 +6,7 @@
     --color-fondo: #fff;
 }
 
+/*Contenido del main contacto*/
 .main-contacto {
     width: 100%;
 }
@@ -123,6 +125,7 @@ label{
     font-size: 14px;
 }
 
+/*Media queries para movile*/
 @media (max-width: 600px) {
     .main-contacto{
         margin-top: 30px;
