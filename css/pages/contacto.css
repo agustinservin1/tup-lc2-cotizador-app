@@ -138,11 +138,7 @@ label{
         align-items: center;
     }
 
-    .formulario,
-    .datos-contacto {
-        width: 90%
-    }
-
+   
     .formulario {
         height: auto; 
     }
