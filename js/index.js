@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     const api_url="https://dolarapi.com/v1";
 function consultar_cotizacion() {
-
+    
     let divisas=["oficial", "blue", "bolsa", "contadoconliqui", "tarjeta", "mayorista","cripto","eur", "brl", "clp", "uyu"];
    
     for (let i = 0; i < divisas.length; i++) {
@@ -25,11 +25,16 @@ function consultar_cotizacion() {
 
                 const compra = data.compra;
                 const venta = data.venta;
+                const fecha_actualizacion=data.fechaActualizacion;
                 // Asignamos los valores a los elementos correspondientes en el DOM
+                //Asignacion del objeto a la variable que luego cambia el texto de las cotizaciones
                let elementoCompra = document.getElementsByClassName("compra-dolar-" + divisas[i]);
                let elementoVenta =document.getElementsByClassName("venta-dolar-" + divisas[i]);
                 elementoCompra[0].innerText=compra; 
                 elementoVenta[0].innerText=venta;
+               //Asignacion y modificacion del div que debe contener la fecha de actualizacion
+               let elementoFecha=document.getElementById("fecha-actualizada")
+               elementoFecha.textContent="Datos actualiazdos al " + fecha_actualizacion //VER LA FORMA DE PRESENTAR EL FORMATO DE MANERA ORDENADA
             
             })
 
