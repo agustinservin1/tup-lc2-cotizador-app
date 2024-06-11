@@ -1,5 +1,8 @@
-document.addEventListener('DOMContentLoaded', consultar_cotizacion);
-const api_url="https://dolarapi.com/v1";
+document.addEventListener('DOMContentLoaded', () => {
+    consultar_cotizacion();
+    setInterval(consultar_cotizacion,5*60*1000);
+    })
+    const api_url="https://dolarapi.com/v1";
 function consultar_cotizacion() {
 
     let divisas=["oficial", "blue", "bolsa", "contadoconliqui", "tarjeta", "mayorista","cripto","eur", "brl", "clp", "uyu"];
