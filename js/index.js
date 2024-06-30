@@ -71,7 +71,7 @@ function consultarCotizaciones() {
 function actualizarCotizacionEnDOM(moneda, data) {
   const compra = data.compra;
   const venta = data.venta;
-  const fecha_actualizacion = data.fechaActualizacion;
+  const fecha_actualizacion = new Date(data.fechaActualizacion);
 
   let elementoCompra = document.querySelector(`.compra-dolar-${moneda}`);
   let elementoVenta = document.querySelector(`.venta-dolar-${moneda}`);
@@ -83,7 +83,9 @@ function actualizarCotizacionEnDOM(moneda, data) {
 
   let elementoFecha = document.getElementById("fecha-actualizada");
   if (elementoFecha) {
-    elementoFecha.textContent = `Datos actualizados al ${fecha_actualizacion}`;
+    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaFormateada = fecha_actualizacion.toLocaleDateString('es-ES', opciones);
+    elementoFecha.textContent = `Datos actualizados al ${fechaFormateada}`;
   }
 }
 
