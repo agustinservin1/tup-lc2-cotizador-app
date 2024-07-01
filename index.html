@@ -1,233 +1,254 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="icon" href="img/Dolar(2).ico" type="image/x-icon">
-    <script src="js/index.js" defer></script>
-    <title>DolarNet</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="icon" href="img/Dolar(2).ico" type="image/x-icon">
+        <script src="js/index.js" defer></script>
+        <title>DolarNet</title>
+    </head>
 
-<body class="container-grid">
-    <header class="header">
-        <img src="img/Dolar(2).png" alt="" width="220px">
-    </header>
-    <section class="section">
-        <nav>
-            <h4 class="menu-nav">MENU</h4>
-            <ul>
-                <li><p href="index.html" class="btn-select"> <i class="fa-solid fa-house"></i>Inicio</p></li>
-                <li><a href="miarchivo.html"><i class="fa-solid fa-box-archive"></i>Mi archivo</a></li>
-                <li><a href="informes.html"><i class="fa-solid fa-file"></i>Informes</a></li>
-                <li><a href="contacto.html"><i class="fa-solid fa-address-book"></i>Contacto</a></li>
-            </ul>
-        </nav>
-        <div class="comment-user">
-            <img src="img/profile-user.webp" alt="Foto de usuario">
-            <div class="info-usuario">
-                <p class="nombre">Roger Medina</p>
-                <p class="opinion">Tiene muy buen servicio y las cotizaciones son siempre correctas</p>
+    <body class="container-grid">
+        <header class="header">
+            <img src="img/Dolar(2).png" alt width="220px">
+        </header>
+        <section class="section">
+            <nav>
+                <h4 class="menu-nav">MENU</h4>
+                <ul>
+                    <li><p href="index.html" class="btn-select"> <i
+                                class="fa-solid fa-house"></i>Inicio</p></li>
+                    <li><a href="miarchivo.html"><i
+                                class="fa-solid fa-box-archive"></i>Mi
+                            archivo</a></li>
+                    <li><a href="informes.html"><i
+                                class="fa-solid fa-file"></i>Informes</a></li>
+                    <li><a href="contacto.html"><i
+                                class="fa-solid fa-address-book"></i>Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="comment-user">
+                <img src="img/profile-user.webp" alt="Foto de usuario">
+                <div class="info-usuario">
+                    <p class="nombre">Roger Medina</p>
+                    <p class="opinion">Tiene muy buen servicio y las
+                        cotizaciones son siempre correctas</p>
+                </div>
             </div>
+        </section>
+        <div class="main">
+            <p class="main-link"><span>Usted esta aquí: </span>Inicio</p>
+            <main>
+                <h2>Pizarra de Cotizaciones</h2>
+                <div class="combo-box">
+                    <label for="moneda">Selecciona una moneda:</label>
+                    <select id="moneda" onchange="filtrarCotizaciones()">
+                        <option value="TODAS">TODAS</option>
+                        <option value="Dolar Oficial">Dólar Oficial</option>
+                        <option value="Dólar Blue">Dólar Blue</option>
+                        <option value="Dólar Bolsa (MEP)">Dólar Bolsa
+                            (MEP)</option>
+                        <option value="Dolar CCL">Dólar Contado con Liqui
+                            (CCL)</option>
+                        <option value="Dólar Tarjeta">Dólar Tarjeta</option>
+                        <option value="Dólar Mayorista">Dólar Mayorista</option>
+                        <option value="Dólar Cripto">Dólar Cripto</option>
+                        <option value="Euro">Euro</option>
+                        <option value="Real Brasileño">Real Brasileño</option>
+                        <option value="Peso Chileno">Peso Chileno</option>
+                        <option value="Peso Uruguay">Peso Uruguay</option>
+                    </select>
+                </div>
+                <p class="updated-data" id="fecha-actualizada"></p>
+                <div class="contenedor-cotizaciones">
+                    <div class="columna" id="oficial">
+                        <h3>Dolar Oficial</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-oficial"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-oficial"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="blue">
+                        <h3>Dólar Blue</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-blue"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-blue"></p>
+                        </div>
+                        <button id="guardar-moneda" class="fav-btn"><i
+                                id="estrella-azul"
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="bolsa">
+                        <h3>Dólar Bolsa (MEP)</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-bolsa"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-bolsa"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="contadoconliqui">
+                        <h3> Dolar CCL</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-contadoconliqui"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-contadoconliqui"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna " id="tarjeta">
+                        <h3>Dólar Tarjeta</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-tarjeta"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-tarjeta"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="mayorista">
+                        <h3>Dólar Mayorista</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-mayorista"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-mayorista"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="cripto">
+                        <h3>Dólar Cripto</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-cripto"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-cripto"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="eur">
+                        <h3>Euro</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-eur"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-eur"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="brl">
+                        <h3>Real Brasileño</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-brl"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-brl"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="clp">
+                        <h3>Peso Chileno</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-clp"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-clp"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                    <div class="columna" id="uyu">
+                        <h3>Peso Uruguay</h3>
+                        <div class="precio">
+                            <p class="compra">Compra</p>
+                            <p class="compra-dolar-uyu"></p>
+                        </div>
+                        <div class="precio">
+                            <p class="compra">Venta</p>
+                            <p class="venta-dolar-uyu"></p>
+                        </div>
+                        <button class="fav-btn"><i
+                                class="fa-regular fa-star"></i></button>
+                    </div>
+                </div>
+                <p>Haga click a la estrella para guardar los datos de la
+                    cotizacion en sus favoritos!</p>
+            </main>
         </div>
-    </section>
-    <div class="main">
-        <p class="main-link"><span>Usted esta aquí: </span>Inicio</p>
-        <main>
-            <h2>Pizarra de Cotizaciones</h2>
-            <div class="combo-box">
-                <label for="moneda" >Selecciona una moneda:</label>
-                <select id="moneda" onchange="filtrarCotizaciones()">
-                    <option value="TODAS">TODAS</option>
-                    <option value="Dolar Oficial">Dólar Oficial</option>
-                    <option value="Dólar Blue">Dólar Blue</option>
-                    <option value="Dólar Bolsa (MEP)">Dólar Bolsa (MEP)</option>
-                    <option value="Dolar CCL">Dólar Contado con Liqui (CCL)</option>
-                    <option value="Dólar Tarjeta">Dólar Tarjeta</option>
-                    <option value="Dólar Mayorista">Dólar Mayorista</option>
-                    <option value="Dólar Cripto">Dólar Cripto</option>
-                    <option value="Euro">Euro</option>
-                    <option value="Real Brasileño">Real Brasileño</option>
-                    <option value="Peso Chileno">Peso Chileno</option>
-                    <option value="Peso Uruguay">Peso Uruguay</option>
-                </select>
-            </div>
-            <p class="updated-data" id="fecha-actualizada"></p>
-            <div class="contenedor-cotizaciones">
-                <div class="columna" id="oficial">
-                    <h3>Dolar Oficial</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-oficial"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-oficial"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
+        <footer class="footer">
+            <div class="container-info-footer">
+                <div class="info-footer">
+                    <h4>Institucional</h4>
+                    <a href="#">¿Quienes somos?</a>
+                    <a href="#">Socios estratégicos</a>
+                    <a href="#">Trabaje con nosotros</a>
+                    <a href="#">Ayuda</a>
                 </div>
-                <div class="columna" id="blue">
-                    <h3>Dólar Blue</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-blue"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-blue"></p>
-                    </div>
-                    <button id="guardar-moneda" class="fav-btn"><i id="estrella-azul" class="fa-regular fa-star"></i></button>
+                <div class="info-footer">
+                    <h4>Accesos</h4>
+                    <a href="index.html">Inicio</a>
+                    <a href="miarchivo.html">Mi Archivo</a>
+                    <a href="informes.html">Informes</a>
+                    <a href="contacto.html">Contáctenos</a>
                 </div>
-                <div class="columna" id="bolsa">
-                    <h3>Dólar Bolsa (MEP)</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-bolsa"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-bolsa"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
+                <div class="info-footer">
+                    <h4>Contacto</h4>
+                    <p>Universidad Técnologica Nacional</p>
+                    <p>Zeballos 1341 - S2000BQA -</p>
+                    <p>Rosario</p>
+                    <p>0341-4481871</p>
                 </div>
-                <div class="columna" id="contadoconliqui">
-                    <h3> Dolar CCL</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-contadoconliqui"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-contadoconliqui"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna " id="tarjeta">
-                    <h3>Dólar Tarjeta</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-tarjeta"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-tarjeta"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna" id="mayorista">
-                    <h3>Dólar Mayorista</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-mayorista"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-mayorista"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna" id="cripto">
-                    <h3>Dólar Cripto</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-cripto"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-cripto"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna" id="eur">
-                    <h3>Euro</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-eur"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-eur"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna" id="brl">
-                    <h3>Real Brasileño</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-brl"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-brl"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna" id="clp">
-                    <h3>Peso Chileno</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-clp"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-clp"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
-                </div>
-                <div class="columna" id="uyu">
-                    <h3>Peso Uruguay</h3>
-                    <div class="precio">
-                        <p class="compra">Compra</p>
-                        <p class="compra-dolar-uyu"></p>
-                    </div>
-                    <div class="precio">
-                        <p class="compra">Venta</p>
-                        <p class="venta-dolar-uyu"></p>
-                    </div>
-                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
+                <div class="info-footer">
+                    <h4>Desarrollado por:</h4>
+                    <p>Federico Ramos</p>
+                    <p>Joaquín Guerrero</p>
+                    <p>Agustín Servin</p>
                 </div>
             </div>
-            <p>Haga click a la estrella para guardar los datos de la cotizacion en sus favoritos!</p>
-        </main>
-    </div>
-    <footer class="footer">
-        <div class="container-info-footer">
-            <div class="info-footer">
-                <h4>Institucional</h4>
-                <a href="#">¿Quienes somos?</a>
-                <a href="#">Socios estratégicos</a>
-                <a href="#">Trabaje con nosotros</a>
-                <a href="#">Ayuda</a>
-            </div>
-            <div class="info-footer">
-                <h4>Accesos</h4>
-                <a href="index.html">Inicio</a>
-                <a href="miarchivo.html">Mi Archivo</a>
-                <a href="informes.html">Informes</a>
-                <a href="contacto.html">Contáctenos</a>
-            </div>
-            <div class="info-footer">
-                <h4>Contacto</h4>
-                <p>Universidad Técnologica Nacional</p>
-                <p>Zeballos 1341 - S2000BQA -</p>
-                <p>Rosario</p>
-                <p>0341-4481871</p>
-            </div>
-            <div class="info-footer">
-                <h4>Desarrollado por:</h4>
-                <p>Federico Ramos</p>
-                <p>Joaquín Guerrero</p>
-                <p>Agustín Servin</p>
-            </div>
-        </div>
-        <p>TUP - Catedra de Laboratorio de Computación 2 - Año 2024 </p>
-    </footer>
+            <p>TUP - Catedra de Laboratorio de Computación 2 - Año 2024 </p>
+        </footer>
 
-
-</body>
+    </body>
 
 </html>
