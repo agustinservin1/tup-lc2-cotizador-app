@@ -11,10 +11,12 @@
     width: 100%;
 }
 .main h2{
-    font-size: 24px;
-    font-weight: 600;
     text-align: center;
+    width: 100%;
+    font-size: 32px;
+    font-weight: bold;
 }
+
 .div-contenedor {
     display: flex;
     flex-direction: column;

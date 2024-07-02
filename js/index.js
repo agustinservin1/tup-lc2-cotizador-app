@@ -67,7 +67,8 @@ function consultarCotizaciones() {
         localStorage.setItem("cotizacionesApi", JSON.stringify(cotizacionesApi));
       })
       .catch(error => {
-        console.error("ERROR:", error);
+        console.error(error)
+        mostrarMensajeError();
       });
   });
 }
@@ -83,7 +84,10 @@ function mostrarMensajeError() {
 function actualizarCotizacionEnDOM(moneda, data) {
   const compra = data.compra;
   const venta = data.venta;
-  const fechaActualizacion = data.fechaActualizacion;
+  // const fechaActualizacion = data.fechaActualizacion; //ver si se muestra la fecha actual o la de actualizacion
+  const fechaActual = obtenerFechaActual();
+  let etiquetaFecha = document.getElementById('fecha-actualizada')
+  etiquetaFecha.textContent = `Datos actualizados al ${fechaActual}`
 
   let elementoCompra = document.querySelector(`.compra-dolar-${moneda}`);
   let elementoVenta = document.querySelector(`.venta-dolar-${moneda}`);
@@ -91,11 +95,6 @@ function actualizarCotizacionEnDOM(moneda, data) {
   if (elementoCompra && elementoVenta) {
     elementoCompra.textContent = compra;
     elementoVenta.textContent = venta;
-  }
-
-  let elementoFecha = document.getElementById("fecha-actualizada");
-  if (elementoFecha) {
-    elementoFecha.textContent = `Datos actualizados al ${fechaActualizacion}`;
   }
 }
 
@@ -108,18 +107,24 @@ function filtrarCotizaciones() {
     const nombreMoneda = columna
       .querySelector("h3")
       .textContent.trim()
-      .toLowerCase()
+      .toLowerCase();
 
     const mostrar = seleccion === "todas" || nombreMoneda.includes(seleccion);
 
-    if (mostrar) {
+    if (seleccion === "todas") {
       columna.style.display = "flex";
-      columna.style.width = '190%'; // se puede dejar o no
+      columna.style.width = '';
     } else {
-      columna.style.display = "none";
-    };
-  };
-};
+      if (mostrar) {
+        columna.style.display = "flex";
+        columna.style.width = '190%';
+      } else {
+        columna.style.display = "none";
+      }
+    }
+  }
+}
+
 
 function guardarMonedas(moneda, data) {
   let monedasGuardadas = JSON.parse(localStorage.getItem('monedasGuardadas')) || {};
@@ -130,7 +135,9 @@ function guardarMonedas(moneda, data) {
   }
 
   const index = monedasGuardadas[fecha].findIndex(cotizacion => cotizacion.moneda === moneda);
-
+  // tambien guardar nombre de la moneda 
+  //nombre: data.nombre
+  //donde se muestran las monedas guardadas que muestre el nombre, no la moneda
   if (index !== -1) {
     monedasGuardadas[fecha].splice(index, 1);
   } else {
@@ -138,6 +145,7 @@ function guardarMonedas(moneda, data) {
       moneda,
       compra: data.compra,
       venta: data.venta,
+      nombre: data.nombre,
       fechaActualizacion: data.fechaActualizacion
     });
   };

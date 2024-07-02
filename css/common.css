@@ -209,10 +209,11 @@ main {
     padding: 0px 24px;
 }
 
-main h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-left: 32px;
+.titulo-main {
+    text-align: start;
+    width: 100%;
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .combo-box {
@@ -243,6 +244,7 @@ main h2 {
 
 .contenedor-cotizaciones {
     max-height: 460px;
+    min-height: 360px;
     background-color: #fff;
     overflow: auto;
     border-radius: 16px;
@@ -255,6 +257,7 @@ main h2 {
 
 .columna {
     display: flex;
+    max-height: 80px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
