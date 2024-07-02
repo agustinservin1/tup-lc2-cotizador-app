@@ -320,6 +320,25 @@ main h2 {
     font-size: 14px;
 }
 
+/* mensaje de error si no funcion la peticion a la api */
+.mostrar-error {
+    border: 1px solid rgb(255, 2, 2);
+    padding: 24px 48px;
+    border-radius: 12px;
+    font-size: 24px;
+    background-color: rgba(243, 0, 0, 0.795);
+    color: white;
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+/* oculta el mensaje si es correcto */
+.ocultar-error {
+    display: none !important;
+}
+
 /* Media Query para móviles*/
 @media (max-width: 600px) {
     body {

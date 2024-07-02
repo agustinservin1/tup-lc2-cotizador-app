@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  consultarCotizaciones();
-  setInterval(consultarCotizaciones, 5 * 60 * 1000);
+const apiUrl = 'https://dolarapi.com/v1';
+let cotizacionesApi = {};
 
-  // Escuchar cambios en el combo box
+document.addEventListener('DOMContentLoaded', () => {
+  consultarCotizaciones()
+
   const selectMoneda = document.getElementById("moneda");
   selectMoneda.addEventListener("change", () => {
     actualizarCotizacionEnDOM(selectMoneda.value.toLowerCase());
@@ -11,22 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".fav-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const moneda = btn.closest(".columna").id;
-      agregarFavorito(moneda);
-      actualizarIconoFavorito(btn, moneda);
+      const data = cotizacionesApi[moneda];
+      guardarMonedas(moneda, data);
+      actualizarBoton(btn, moneda);
     });
   });
 
-  // Inicializar iconos de favoritos
-  document.querySelectorAll(".fav-btn").forEach((btn) => {
-    const moneda = btn.closest(".columna").id;
-    actualizarIconoFavorito(btn, moneda);
-  });
+  const monedasGuardadas = JSON.parse(localStorage.getItem('monedasGuardadas')) || {};
+  console.log('monedas guardadas', monedasGuardadas)
+  const fecha = obtenerFechaActual();
+  if (monedasGuardadas[fecha]) {
+    monedasGuardadas[fecha].forEach(({ moneda }) => {
+      const btn = document.querySelector(`#${moneda} .fav-btn`);
+      if (btn) {
+        actualizarBoton(btn, moneda);
+      }
+    });
+  }
 });
 
-const api_url = "https://dolarapi.com/v1";
-let cotizaciones = {}
-
-// Diccionario para almacenar las cotizaciones
 function consultarCotizaciones() {
   let divisas = [
     "oficial",
@@ -45,9 +49,9 @@ function consultarCotizaciones() {
   divisas.forEach(divisa => {
     let url = "";
     if (!["eur", "brl", "clp", "uyu"].includes(divisa)) {
-      url = `${api_url}/dolares/${divisa}`;
+      url = `${apiUrl}/dolares/${divisa}`;
     } else {
-      url = `${api_url}/cotizaciones/${divisa}`;
+      url = `${apiUrl}/cotizaciones/${divisa}`;
     }
 
     fetch(url)
@@ -58,9 +62,9 @@ function consultarCotizaciones() {
         return response.json();
       })
       .then(data => {
-        cotizaciones[divisa] = data;
+        cotizacionesApi[divisa] = data;
         actualizarCotizacionEnDOM(divisa, data);
-        localStorage.setItem("cotizaciones", JSON.stringify(cotizaciones));
+        localStorage.setItem("cotizacionesApi", JSON.stringify(cotizacionesApi));
       })
       .catch(error => {
         console.error("ERROR:", error);
@@ -68,10 +72,18 @@ function consultarCotizaciones() {
   });
 }
 
+function mostrarMensajeError() {
+  const contenedorMensaje = document.getElementById('mostrar-error');
+  contenedorMensaje.classList.add('mostrar-error');
+  const textoError = document.createElement('p');
+  textoError.textContent = 'Error: Ha ocurrido un error al intentar consultar los datos.';
+  contenedorMensaje.appendChild(textoError);
+};
+
 function actualizarCotizacionEnDOM(moneda, data) {
   const compra = data.compra;
   const venta = data.venta;
-  const fecha_actualizacion = new Date(data.fechaActualizacion);
+  const fechaActualizacion = data.fechaActualizacion;
 
   let elementoCompra = document.querySelector(`.compra-dolar-${moneda}`);
   let elementoVenta = document.querySelector(`.venta-dolar-${moneda}`);
@@ -83,9 +95,7 @@ function actualizarCotizacionEnDOM(moneda, data) {
 
   let elementoFecha = document.getElementById("fecha-actualizada");
   if (elementoFecha) {
-    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-    const fechaFormateada = fecha_actualizacion.toLocaleDateString('es-ES', opciones);
-    elementoFecha.textContent = `Datos actualizados al ${fechaFormateada}`;
+    elementoFecha.textContent = `Datos actualizados al ${fechaActualizacion}`;
   }
 }
 
@@ -98,46 +108,60 @@ function filtrarCotizaciones() {
     const nombreMoneda = columna
       .querySelector("h3")
       .textContent.trim()
-      .toLowerCase();
+      .toLowerCase()
+
     const mostrar = seleccion === "todas" || nombreMoneda.includes(seleccion);
 
     if (mostrar) {
       columna.style.display = "flex";
+      columna.style.width = '190%'; // se puede dejar o no
     } else {
       columna.style.display = "none";
-    }
+    };
+  };
+};
+
+function guardarMonedas(moneda, data) {
+  let monedasGuardadas = JSON.parse(localStorage.getItem('monedasGuardadas')) || {};
+  const fecha = obtenerFechaActual();
+
+  if (!monedasGuardadas[fecha]) {
+    monedasGuardadas[fecha] = [];
   }
-}
 
-function agregarFavorito(moneda) {
-  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  const index = monedasGuardadas[fecha].findIndex(cotizacion => cotizacion.moneda === moneda);
 
-  const index = favoritos.findIndex((fav) => {
-    return fav.moneda === moneda;
-
-});
   if (index !== -1) {
-    favoritos.splice(index, 1);
+    monedasGuardadas[fecha].splice(index, 1);
   } else {
-    favoritos.push({
-      moneda: moneda,
-      compra: cotizaciones[moneda].compra,
-      venta: cotizaciones[moneda].venta,
-      fecha_actualizacion: cotizaciones[moneda].fechaActualizacion,
+    monedasGuardadas[fecha].push({
+      moneda,
+      compra: data.compra,
+      venta: data.venta,
+      fechaActualizacion: data.fechaActualizacion
     });
-  }
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
-  console.log("Favoritos actualizados: ", favoritos);
+  };
+  localStorage.setItem("monedasGuardadas", JSON.stringify(monedasGuardadas));
 }
 
-function actualizarIconoFavorito(btn, moneda) {
-  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-  const icon = btn.querySelector("i");
-  if (favoritos.some((fav) => fav.moneda === moneda)) {
+function actualizarBoton(btn, moneda) {
+  let monedasGuardadas = JSON.parse(localStorage.getItem('monedasGuardadas')) || {};
+  const icon = btn.querySelector('i');
+  const fecha = obtenerFechaActual();
+
+  if (monedasGuardadas[fecha] && monedasGuardadas[fecha].some((guardado) => guardado.moneda === moneda)) {
     icon.classList.remove("fa-regular");
     icon.classList.add("fa-solid");
   } else {
     icon.classList.remove("fa-solid");
     icon.classList.add("fa-regular");
   }
+}
+
+function obtenerFechaActual() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
+  const day = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate();
+  return `${year}-${month}-${day}`;
 }
