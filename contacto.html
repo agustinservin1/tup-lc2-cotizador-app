@@ -11,7 +11,13 @@
     <link rel="stylesheet" href="css/pages/contacto.css">
     <link rel="icon" href="img/Dolar(2).ico" type="image/x-icon">
     <title>Contacto - DolarNet</title>
-</head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        emailjs.init('Lg_Tdf__q3AssxpIQ')
+    </script>
+    <script src="js/contacto.js" defer></script>
+</head >
 
 <body class="container-grid">
 
@@ -52,17 +58,17 @@
                 <div class="elementos-flex">
                     <div class="formulario">
                         <h3>Formulario de contacto</h3>
-                        <form action="#" class="contenido-formulario">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+                        <form action="#" class="contenido-formulario" id="form">
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" id="nombre" name="from_name" placeholder="Ingrese su nombre" required>
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Ingrese su correo eléctronico"
+                            <input type="email" id="email" name="email_id" placeholder="Ingrese su correo eléctronico"
                             required>
                             <label for="mensaje">Mensaje:</label>
-                            <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                            <textarea id="mensaje" name="message" rows="4"></textarea>
                             <div class="botones">
                                 <button type="button" name="limpiar" value="limpiar" class="btn">Limpiar</button>
-                                <button type="submit" class="btn">Enviar</button>
+                                <button type="submit" id="button" class="btn" value="Enviar">Enviar</button>
                             </div>
                         </form>
                     </div>
