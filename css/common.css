@@ -153,7 +153,7 @@ nav ul li a i:hover {
 }
 
 .comment-user {
-    border: 1px solid var(--color-comentario-borde);
+    border: 1px solid var(--color-comentario-borde); 
     display: flex;
     align-items: center;
     justify-content: center;

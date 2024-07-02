@@ -165,3 +165,40 @@ function obtenerFechaActual() {
   const day = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate();
   return `${year}-${month}-${day}`;
 }
+
+
+///cuadro de comentarios
+// Array de comentarios
+const comentarios = [
+  { nombre: "Roger Medina", opinion: "Tiene muy buen servicio y las cotizaciones son siempre correctas", foto:"img/profile-user.webp" },
+  { nombre: "Ana López", opinion: "Me gusta mucho la atención al cliente, son muy rápidos en responder",foto:"img/user3.jpeg" },
+  { nombre: "Carlos Pérez", opinion: "Excelente plataforma, fácil de usar y muy informativa",foto: "img/user2.webp" }
+  
+];
+
+// Función para mostrar comentario aleatorio
+function mostrarComentarioAleatorio() {
+  const indice = Math.floor(Math.random() * comentarios.length);
+  const comentario = comentarios[indice];
+
+  const comentarioHTML = `
+      <div class="comment-user">
+          <img src="${comentario.foto}" alt="Foto de usuario">
+          <div class="info-usuario">
+              <p class="nombre">${comentario.nombre}</p>
+              <p class="opinion">${comentario.opinion}</p>
+          </div>
+      </div>
+  `;
+ 
+  const commentContainer = document.getElementById("comment-container");
+  commentContainer.innerHTML = comentarioHTML;
+}
+
+// Mostrar un comentario aleatorio al cargar la página
+mostrarComentarioAleatorio();
+
+
+setInterval(() => {
+  mostrarComentarioAleatorio();
+}, 4000); 
