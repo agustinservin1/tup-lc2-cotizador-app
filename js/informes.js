@@ -1,70 +1,67 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtener los datos de monedas guardadas desde localStorage
     const monedasGuardadas = JSON.parse(localStorage.getItem('monedasGuardadas')) || {};
     console.log(monedasGuardadas);
 
-    // Inicializar arrays y objetos para etiquetas y datasets
     const etiquetas = [];
     const datasets = {};
 
-    // Función para generar un color aleatorio en formato hexadecimal
     function getRandomColor() {
         return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
     }
 
-    // Iterar sobre las fechas en monedasGuardadas
-    Object.keys(monedasGuardadas).forEach((fecha, index) => {
-        // Obtener las cotizaciones para la fecha actual
+    // Recorrer las fechas y cotizaciones almacenadas
+    const fechas = Object.keys(monedasGuardadas);
+    for (let i = 0; i < fechas.length; i++) {
+        const fecha = fechas[i];
+        etiquetas.push(fecha);
+
         const cotizaciones = monedasGuardadas[fecha];
-
-        // Agregar la fecha a etiquetas si no está presente
-        if (!etiquetas.includes(fecha)) {
-            etiquetas.push(fecha);
-        }
-
-        // Iterar sobre las cotizaciones de la fecha actual
-        cotizaciones.forEach(cotizacion => {
+        for (let j = 0; j < cotizaciones.length; j++) {
+            const cotizacion = cotizaciones[j];
             const { moneda, compra, venta } = cotizacion;
 
-            // Crear dataset de compra si no existe para esa moneda
             if (!datasets[moneda]) {
                 datasets[moneda] = {
-                    label: `${moneda} - Compra`,
-                    data: [], // Inicializar array para almacenar datos de compra
-                    borderColor: getRandomColor(), // Asignar color aleatorio para el borde
-                    backgroundColor: 'transparent',
-                    borderWidth: 1,
-                    fill: false
-                };
-
-                // Crear dataset de venta si no existe para esa moneda
-                datasets[`${moneda} - Venta`] = {
-                    label: `${moneda} - Venta`,
-                    data: [], // Inicializar array para almacenar datos de venta
-                    borderColor: getRandomColor(), // Asignar otro color aleatorio para el borde
-                    backgroundColor: 'transparent',
-                    borderWidth: 1,
-                    fill: false
+                    compra: {
+                        label: `${moneda} - Compra`,
+                        data: [],
+                        borderColor: getRandomColor(),
+                        backgroundColor: 'transparent',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    venta: {
+                        label: `${moneda} - Venta`,
+                        data: [],
+                        borderColor: getRandomColor(),
+                        backgroundColor: 'transparent',
+                        borderWidth: 1,
+                        fill: false
+                    }
                 };
             }
 
-            // Agregar precio de compra al dataset correspondiente
-            datasets[moneda].data.push(compra);
+            datasets[moneda].compra.data.push(compra);
+            datasets[moneda].venta.data.push(venta);
+        }
+    }
 
-            // Agregar precio de venta al dataset correspondiente
-            datasets[`${moneda} - Venta`].data.push(venta);
-        });
-    });
+    // Crear un arreglo de datasets para Chart.js
+    const datasetsArray = [];
+    for (let moneda in datasets) {
+        if (datasets.hasOwnProperty(moneda)) {
+            datasetsArray.push(datasets[moneda].compra);
+            datasetsArray.push(datasets[moneda].venta);
+        }
+    }
 
-    // Obtener el contexto del gráfico desde el elemento con ID 'miGrafico'
+    // Configurar y crear el grÃ¡fico
     const ctx = document.getElementById('miGrafico').getContext('2d');
-
-    // Crear un gráfico de tipo línea utilizando Chart.js
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: etiquetas, // Etiquetas para el eje X (fechas)
-            datasets: Object.values(datasets) // Convertir el objeto datasets en un array de datasets para los datos del gráfico
+            labels: etiquetas,
+            datasets: datasetsArray
         }
     });
 });
