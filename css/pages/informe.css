@@ -52,9 +52,12 @@
     min-width: 600px;
     max-width: 800px;
     padding: 24px;
+    min-height: 300px;
+    max-height: 500px;
+    overflow: auto;
 }
 
-.nombre-moneda {
+#nombre-moneda {
     text-align: left;
     font-size: 28px;
     font-weight: 600;
