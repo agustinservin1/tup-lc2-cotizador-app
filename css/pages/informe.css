@@ -24,6 +24,10 @@
     justify-content: center;
     gap: 24px;
 }
+#moneda{
+    width: 8rem;
+    text-align: center;
+}
 
 .compartir-info {
     display: flex;
