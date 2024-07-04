@@ -1,85 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const monedasGuardadas = JSON.parse(localStorage.getItem('monedasGuardadas')) || {};
     let objetoInforme = {};
-    const etiquetas = [];
-    const datasets = {}; 
+    let chartInstance = null;
+
     function getRandomColor() {
         return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
-    }
-
-    const fechas = Object.keys(monedasGuardadas);
-    for (let i = 0; i < fechas.length; i++) {
-        const fecha = fechas[i];
-        etiquetas.push(fecha);
-
-        const cotizaciones = monedasGuardadas[fecha];
-        for (let j = 0; j < cotizaciones.length; j++) {
-            const cotizacion = cotizaciones[j];
-            const { moneda, compra, venta } = cotizacion;
-
-            if (!datasets[moneda]) {
-                datasets[moneda] = {
-                    compra: {
-                        label: `${moneda} - Compra`,
-                        data: [],
-                        borderColor: getRandomColor(),
-                        backgroundColor: 'transparent',
-                        borderWidth: 1,
-                        fill: false
-                    },
-                    venta: {
-                        label: `${moneda} - Venta`,
-                        data: [],
-                        borderColor: getRandomColor(),
-                        backgroundColor: 'transparent',
-                        borderWidth: 1,
-                        fill: false
-                    }
-                };
-            }
-
-            datasets[moneda].compra.data.push(compra);
-            datasets[moneda].venta.data.push(venta);
-        }
-    }
-
-    const datasetsArray = [];
-    for (let moneda in datasets) {
-        if (datasets.hasOwnProperty(moneda)) {
-            datasetsArray.push(datasets[moneda].compra);
-            datasetsArray.push(datasets[moneda].venta);
-        }
-    }
-
-    const ctx = document.getElementById('miGrafico').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: etiquetas,
-            datasets: datasetsArray
-        }
-    });
-
-    cargarDatosLocalStorage();
-    cargarComboInformes();
-    document.getElementById("moneda").addEventListener('change', cargasDatosInforme);
-
-    function cargarComboInformes(){
-        const seleccionCombo = document.getElementById("moneda");
-        seleccionCombo.innerHTML = ''; 
-        for (let fecha in monedasGuardadas){
-            for(let i = 0; i < monedasGuardadas[fecha].length; i++){
-                const nombreMoneda = monedasGuardadas[fecha][i].nombre;
-                const valueMoneda = monedasGuardadas[fecha][i].moneda.toLowerCase();
-                if (!seleccionCombo.querySelector(`option[value="${valueMoneda}"]`)) {
-                    const elementOption = document.createElement('option');
-                    elementOption.value = valueMoneda;
-                    elementOption.classList.add("select-moneda");
-                    elementOption.textContent = nombreMoneda;
-                    seleccionCombo.appendChild(elementOption);
-                }
-            }
-        }   
     }
 
     function cargarDatosLocalStorage() {
@@ -95,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!objetoInforme[monedaKey][fecha]) {
                     objetoInforme[monedaKey][fecha] = [];
                 }
-                
+
                 objetoInforme[monedaKey][fecha].push({
                     nombre: nombre,
                     compra: compra,
@@ -106,59 +31,234 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(objetoInforme);
     }
 
-    function cargasDatosInforme() {
+    function cargarComboInformes() {
+        const seleccionCombo = document.getElementById("moneda");
+        seleccionCombo.innerHTML = ''; 
+
+        // Agregar opción "TODAS"
+        const todasOption = document.createElement('option');
+        todasOption.value = 'todas';
+        todasOption.classList.add("select-moneda");
+        todasOption.textContent = 'Todas';
+        seleccionCombo.appendChild(todasOption);
+
+        for (let fecha in monedasGuardadas) {
+            for (let i = 0; i < monedasGuardadas[fecha].length; i++) {
+                const nombreMoneda = monedasGuardadas[fecha][i].nombre;
+                const valueMoneda = monedasGuardadas[fecha][i].moneda.toLowerCase();
+                if (!seleccionCombo.querySelector(`option[value="${valueMoneda}"]`)) {
+                    const elementOption = document.createElement('option');
+                    elementOption.value = valueMoneda;
+                    elementOption.classList.add("select-moneda");
+                    elementOption.textContent = nombreMoneda;
+                    seleccionCombo.appendChild(elementOption);
+                }
+            }
+        }
+    }
+
+    function cargarGrafico(monedaSeleccionada) {
+  const etiquetas = [];
+  const datasets = [];
+
+  const fechas = Object.keys(monedasGuardadas);
+  for (let i = 0; i < fechas.length; i++) {
+    const fecha = fechas[i];
+    etiquetas.push(fecha);
+
+    if (monedaSeleccionada === 'todas') {
+      for (let j = 0; j < monedasGuardadas[fecha].length; j++) {
+        const cotizacion = monedasGuardadas[fecha][j];
+        const monedaKey = cotizacion.moneda.toLowerCase();
+
+        let compraDataset = null;
+        let ventaDataset = null;
+
+        // Buscamos los datasets de compra y venta para la moneda actual
+        for (let k = 0; k < datasets.length; k++) {
+          if (datasets[k].label === `${monedaKey.toUpperCase()} - Compra`) {
+            compraDataset = datasets[k];
+          }
+          if (datasets[k].label === `${monedaKey.toUpperCase()} - Venta`) {
+            ventaDataset = datasets[k];
+          }
+        }
+
+        // Si no existe el dataset de compra, lo creamos
+        if (!compraDataset) {
+          compraDataset = {
+            label: `${monedaKey.toUpperCase()} - Compra`,
+            data: [],
+            borderColor: getRandomColor(),
+            backgroundColor: 'transparent',
+            borderWidth: 1,
+            fill: false
+          };
+          datasets.push(compraDataset);
+        }
+
+        // Si no existe el dataset de venta, lo creamos
+        if (!ventaDataset) {
+          ventaDataset = {
+            label: `${monedaKey.toUpperCase()} - Venta`,
+            data: [],
+            borderColor: getRandomColor(),
+            backgroundColor: 'transparent',
+            borderWidth: 1,
+            fill: false
+          };
+          datasets.push(ventaDataset);
+        }
+
+        // Agregar los datos de compra y venta a los datasets correspondientes
+        compraDataset.data.push(cotizacion.compra);
+        ventaDataset.data.push(cotizacion.venta);
+      
+                }
+            } else {
+                const cotizaciones = monedasGuardadas[fecha];
+                for (let j = 0; j < cotizaciones.length; j++) {
+                    const cotizacion = cotizaciones[j];
+                    if (cotizacion.moneda.toLowerCase() === monedaSeleccionada) {
+                        if (!datasets.some(ds => ds.label === `${monedaSeleccionada.toUpperCase()} - Compra`)) {
+                            datasets.push({
+                                label: `${monedaSeleccionada.toUpperCase()} - Compra`,
+                                data: [],
+                                borderColor: getRandomColor(),
+                                backgroundColor: 'transparent',
+                                borderWidth: 1,
+                                fill: false
+                            });
+                            datasets.push({
+                                label: `${monedaSeleccionada.toUpperCase()} - Venta`,
+                                data: [],
+                                borderColor: getRandomColor(),
+                                backgroundColor: 'transparent',
+                                borderWidth: 1,
+                                fill: false
+                            });
+                        }
+
+                        const compraDataset = datasets.find(ds => ds.label === `${monedaSeleccionada.toUpperCase()} - Compra`);
+                        const ventaDataset = datasets.find(ds => ds.label === `${monedaSeleccionada.toUpperCase()} - Venta`);
+
+                        compraDataset.data.push(cotizacion.compra);
+                        ventaDataset.data.push(cotizacion.venta);
+                    }
+                }
+            }
+        }
+
+        const ctx = document.getElementById('miGrafico').getContext('2d');
+        
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
+
+        chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: etiquetas,
+                datasets: datasets
+            }
+        });
+    }
+
+    cargarDatosLocalStorage();
+    cargarComboInformes();
+
+    document.getElementById("moneda").addEventListener('change', function() {
         const seleccion = document.getElementById("moneda").value.toLowerCase();
+        cargasDatosInforme(seleccion);
+        cargarGrafico(seleccion);
+    });
+
+    function cargasDatosInforme(monedaSeleccionada) {
+        const seleccion = monedaSeleccionada.toLowerCase();
         const tituloMoneda = document.getElementById("nombre-moneda");
         const tablaInforme = document.getElementById("tabla-informes-body");
         tablaInforme.innerHTML = '';
-        
-        if (objetoInforme[seleccion]) {
-            
-            console.log(`Cargando datos para: ${seleccion}`);
-            Object.keys(objetoInforme[seleccion]).forEach(fecha => {
-                const cotizaciones = objetoInforme[seleccion][fecha];
-                cotizaciones.forEach(cotizacion => {
-                    tituloMoneda.textContent = cotizacion.nombre
-                    const { compra, venta } = cotizacion;
 
-                    const fila = document.createElement('tr');
-                    fila.classList.add('fila-cotizacion');
-                    // fila.style.maxHeight= '100px';
-                    const celdaFecha = document.createElement('td');
-                    celdaFecha.textContent = fecha;
-                    fila.appendChild(celdaFecha);
+        if (seleccion === 'todas') {
+            tituloMoneda.textContent = 'Cotizaciones guardadas';
+            for (let moneda in objetoInforme) {
+                const nombreMoneda = objetoInforme[moneda][Object.keys(objetoInforme[moneda])[0]][0].nombre;
+                const titulo = document.createElement('h3');
+                titulo.textContent = nombreMoneda;
+                tablaInforme.appendChild(titulo);
 
-                    const celdaCompra = document.createElement('td');
-                    celdaCompra.textContent = `$${compra}`;
-                    fila.appendChild(celdaCompra);
-                    
-                    const celdaVenta = document.createElement('td');
-                    celdaVenta.textContent = `$${venta}`;
-                    fila.appendChild(celdaVenta);
+                Object.keys(objetoInforme[moneda]).forEach(fecha => {
+                    const cotizaciones = objetoInforme[moneda][fecha];
+                    cotizaciones.forEach(cotizacion => {
+                        const { compra, venta } = cotizacion;
 
-                    const celdaFlecha = document.createElement('td');
-                    const iconoFlecha = document.createElement('i');
-                    iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
-                    iconoFlecha.style.color = '#63E6BE'; // Color verde
-                    celdaFlecha.appendChild(iconoFlecha);
-                    fila.appendChild(celdaFlecha);
+                        const fila = document.createElement('tr');
+                        fila.classList.add('fila-cotizacion');
+                        const celdaFecha = document.createElement('td');
+                        celdaFecha.textContent = fecha;
+                        fila.appendChild(celdaFecha);
 
-                    tablaInforme.appendChild(fila);
+                        const celdaCompra = document.createElement('td');
+                        celdaCompra.textContent = `$${compra}`;
+                        fila.appendChild(celdaCompra);
+
+                        const celdaVenta = document.createElement('td');
+                        celdaVenta.textContent = `$${venta}`;
+                        fila.appendChild(celdaVenta);
+
+                        const celdaFlecha = document.createElement('td');
+                        const iconoFlecha = document.createElement('i');
+                        iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
+                        iconoFlecha.style.color = '#63E6BE'; // Color verde
+                        celdaFlecha.appendChild(iconoFlecha);
+                        fila.appendChild(celdaFlecha);
+
+                        tablaInforme.appendChild(fila);
+                    });
                 });
-            });
+            }
         } else {
-            console.log(`No hay información disponible para la moneda ${seleccion}.`);
+            if (objetoInforme[seleccion]) {
+                console.log(`Cargando datos para: ${seleccion}`);
+                Object.keys(objetoInforme[seleccion]).forEach(fecha => {
+                    const cotizaciones = objetoInforme[seleccion][fecha];
+                    cotizaciones.forEach(cotizacion => {
+                        tituloMoneda.textContent = cotizacion.nombre;
+                        const { compra, venta } = cotizacion;
+
+                        const fila = document.createElement('tr');
+                        fila.classList.add('fila-cotizacion');
+                        const celdaFecha = document.createElement('td');
+                        celdaFecha.textContent = fecha;
+                        fila.appendChild(celdaFecha);
+
+                        const celdaCompra = document.createElement('td');
+                        celdaCompra.textContent = `$${compra}`;
+                        fila.appendChild(celdaCompra);
+
+                        const celdaVenta = document.createElement('td');
+                        celdaVenta.textContent = `$${venta}`;
+                        fila.appendChild(celdaVenta);
+
+                        const celdaFlecha = document.createElement('td');
+                        const iconoFlecha = document.createElement('i');
+                        iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
+                        iconoFlecha.style.color = '#63E6BE'; // Color verde
+                        celdaFlecha.appendChild(iconoFlecha);
+                        fila.appendChild(celdaFlecha);
+
+                        tablaInforme.appendChild(fila);
+                    });
+                });
+            } else {
+                console.log(`No hay información disponible para la moneda ${seleccion}.`);
+            }
         }
     }
-    cargasDatosInforme()
-    function compartirInformacion(){
-        const boton = document.getElementById("btn-compartir")
 
-        boton.addEventListener('click', ()=>{
-        let formulario = document.getElementById("formulario-datos")
-        formulario.style.display = "flex"
-        })
-
-    }
-    compartirInformacion()
+   //Por defecto definimos como "todas" a el combo de monedas guardadas
+    const seleccionInicial = 'todas';
+    document.getElementById("moneda").value = seleccionInicial;
+    cargasDatosInforme(seleccionInicial);
+    cargarGrafico(seleccionInicial);
 });
