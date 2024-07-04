@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <script src="js/informes.js" defer></script>
     <title>Informes - DolarNet</title>
 </head>
+
 <body class="container-grid">
     <header class="header">
         <img src="img/Dolar(2).png" alt="" width="220px">
@@ -29,13 +31,6 @@
                 <li><a href="contacto.html"><i class="fa-solid fa-address-book"></i>Contacto</a></li>
             </ul>
         </nav>
-        <div class="comment-user">
-            <img src="img/profile-user.webp" alt="Foto de usuario">
-            <div class="info-usuario">
-                <p class="nombre">Roger Medina</p>
-                <p class="opinion">Tiene muy buen servicio y las cotizaciones son siempre correctas</p>
-            </div>
-        </div>
     </section>
     <div class="main">
         <p class="main-link"><span>Usted esta aquí: </span><a href="index.html">Inicio</a>/Informes</p>
@@ -45,12 +40,14 @@
                 <div class="combo-box">
                     <label for="moneda">Selecciona una moneda:</label>
                     <select id="moneda">
-                        
+
                     </select>
                 </div>
                 <div class="compartir-info">
-                    <i class="fa-solid fa-print" style="color: #000000;"></i>
-                    <p>Compartir información</p><!-- aca puede ir etiqueta a -->
+                    <button type="button" id="btn-compartir">
+                        <i class="fa-solid fa-print" style="color: #000000;"></i>
+                        <p>Compartir información</p>
+                    </button><!-- aca puede ir etiqueta a -->
                 </div>
                 <table class="table-informes">
                     <thead>
@@ -65,7 +62,7 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-informes-body">
-                      
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -77,7 +74,7 @@
             <div class="grafica-informes">
                 <canvas id="miGrafico" width="400" height="400"></canvas>
             </div>
-            <div class="formulario-datos">
+            <div id="formulario-datos">
                 <h3>Datos del destinatario</h3>
                 <label for="name">Nombre</label>
                 <input type="text" name="name" id="name" required>
@@ -120,4 +117,5 @@
         <p>TUP - Catedra de Laboratorio de Computación 2 - Año 2024 </p>
     </footer>
 </body>
+
 </html>

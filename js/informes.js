@@ -122,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const { compra, venta } = cotizacion;
 
                     const fila = document.createElement('tr');
-
+                    fila.classList.add('fila-cotizacion');
+                    // fila.style.maxHeight= '100px';
                     const celdaFecha = document.createElement('td');
                     celdaFecha.textContent = fecha;
                     fila.appendChild(celdaFecha);
@@ -149,4 +150,15 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(`No hay información disponible para la moneda ${seleccion}.`);
         }
     }
+    cargasDatosInforme()
+    function compartirInformacion(){
+        const boton = document.getElementById("btn-compartir")
+
+        boton.addEventListener('click', ()=>{
+        let formulario = document.getElementById("formulario-datos")
+        formulario.style.display = "flex"
+        })
+
+    }
+    compartirInformacion()
 });
