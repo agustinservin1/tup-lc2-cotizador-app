@@ -208,8 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         const celdaFlecha = document.createElement('td');
                         const iconoFlecha = document.createElement('i');
-                        iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
-                        iconoFlecha.style.color = '#63E6BE'; // Color verde
+                        
                         celdaFlecha.appendChild(iconoFlecha);
                         fila.appendChild(celdaFlecha);
 

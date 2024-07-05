@@ -3,6 +3,8 @@ let cotizacionesApi = {};
 
 document.addEventListener('DOMContentLoaded', () => {
   consultarCotizaciones()
+  setInterval(consultarCotizaciones, 5*60*1000);
+
 
   const selectMoneda = document.getElementById("moneda");
   selectMoneda.addEventListener("change", () => {
@@ -85,7 +87,7 @@ function actualizarCotizacionEnDOM(moneda, data) {
   const compra = data.compra;
   const venta = data.venta;
   // const fechaActualizacion = data.fechaActualizacion; //ver si se muestra la fecha actual o la de actualizacion
-  const fechaActual = obtenerFechaActual();
+  const fechaActual = obtenerFechaActual(data.fechaActualizacion);
   let etiquetaFecha = document.getElementById('fecha-actualizada')
   etiquetaFecha.textContent = `Datos actualizados al ${fechaActual}`
 
@@ -166,13 +168,14 @@ function actualizarBoton(btn, moneda) {
   }
 }
 
-function obtenerFechaActual() {
+function obtenerFechaActual(fecha = new Date()) {
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
   const day = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate();
   return `${year}-${month}-${day}`;
 }
+
 
 
 ///cuadro de comentarios
