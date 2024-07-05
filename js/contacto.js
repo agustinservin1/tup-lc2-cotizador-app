@@ -18,3 +18,7 @@ document.getElementById('form')
       alert(JSON.stringify(err));
     });
 });
+const limpiarButton = document.querySelector('button[name="limpiar"]');
+limpiarButton.addEventListener('click', function() {
+    document.getElementById('form').reset();
+});

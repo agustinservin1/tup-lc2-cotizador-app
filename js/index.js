@@ -86,7 +86,6 @@ function mostrarMensajeError() {
 function actualizarCotizacionEnDOM(moneda, data) {
   const compra = data.compra;
   const venta = data.venta;
-  // const fechaActualizacion = data.fechaActualizacion; //ver si se muestra la fecha actual o la de actualizacion
   const fechaActual = obtenerFechaActual(data.fechaActualizacion);
   let etiquetaFecha = document.getElementById('fecha-actualizada')
   etiquetaFecha.textContent = `Datos actualizados al ${fechaActual}`
@@ -137,9 +136,7 @@ function guardarMonedas(moneda, data) {
   }
 
   const index = monedasGuardadas[fecha].findIndex(cotizacion => cotizacion.moneda === moneda);
-  // tambien guardar nombre de la moneda 
-  //nombre: data.nombre
-  //donde se muestran las monedas guardadas que muestre el nombre, no la moneda
+
   if (index !== -1) {
     monedasGuardadas[fecha].splice(index, 1);
   } else {
@@ -176,10 +173,6 @@ function obtenerFechaActual(fecha = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
-
-
-///cuadro de comentarios
-// Array de comentarios
 const comentarios = [
   { nombre: "Roger Medina", opinion: "Tiene muy buen servicio y las cotizaciones son siempre correctas", foto: "img/profile-user.webp" },
   { nombre: "Ana López", opinion: "Me gusta mucho la atención al cliente, son muy rápidos en responder", foto: "img/user3.jpeg" },
@@ -187,7 +180,6 @@ const comentarios = [
 
 ];
 
-// Función para mostrar comentario aleatorio
 function mostrarComentarioAleatorio() {
   const indice = Math.floor(Math.random() * comentarios.length);
   const comentario = comentarios[indice];
@@ -206,7 +198,7 @@ function mostrarComentarioAleatorio() {
   commentContainer.innerHTML = comentarioHTML;
 }
 
-// Mostrar un comentario aleatorio al cargar la página
+
 mostrarComentarioAleatorio();
 
 

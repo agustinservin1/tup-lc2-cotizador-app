@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let compraDataset = null;
         let ventaDataset = null;
 
-        // Buscamos los datasets de compra y venta para la moneda actual
         for (let k = 0; k < datasets.length; k++) {
           if (datasets[k].label === `${monedaKey.toUpperCase()} - Compra`) {
             compraDataset = datasets[k];
@@ -84,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
 
-        // Si no existe el dataset de compra, lo creamos
         if (!compraDataset) {
           compraDataset = {
             label: `${monedaKey.toUpperCase()} - Compra`,
@@ -97,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
           datasets.push(compraDataset);
         }
 
-        // Si no existe el dataset de venta, lo creamos
         if (!ventaDataset) {
           ventaDataset = {
             label: `${monedaKey.toUpperCase()} - Venta`,
@@ -110,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
           datasets.push(ventaDataset);
         }
 
-        // Agregar los datos de compra y venta a los datasets correspondientes
         compraDataset.data.push(cotizacion.compra);
         ventaDataset.data.push(cotizacion.venta);
       
@@ -255,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-   //Por defecto definimos como "todas" a el combo de monedas guardadas
+  
     const seleccionInicial = 'todas';
     document.getElementById("moneda").value = seleccionInicial;
     cargasDatosInforme(seleccionInicial);

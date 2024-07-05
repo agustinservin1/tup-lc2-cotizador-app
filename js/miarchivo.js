@@ -65,3 +65,13 @@ function eliminarFavorito(event) {
     localStorage.setItem('monedasGuardadas', JSON.stringify(monedasGuardadas));
     mostrarFavoritos();
 }
+
+function imprimirTabla() {
+    const contenidoTabla = document.querySelector('.contenido-tabla').innerHTML;
+    const originalContenido = document.body.innerHTML;
+
+    document.body.innerHTML = contenidoTabla;
+    window.print();
+    document.body.innerHTML = originalContenido;
+}
+
