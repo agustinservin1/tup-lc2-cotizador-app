@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function mostrarFavoritos() {
     const tbody = document.getElementById('tabla-datos');
-    tbody.innerHTML = ''; // limpiamos la tabla antes de volver a generar todo
+    tbody.innerHTML = ''; 
 
     for (let fecha in monedasGuardadas) {
-        if (monedasGuardadas[fecha].length > 0) { //para que cree las cosas debe tener al menos 1 moneda por fecha
+        if (monedasGuardadas[fecha].length > 0) { 
             const [anio, mes, dia] = fecha.split('-');
             const fechaFormateada = `${dia}/${mes}/${anio}`;
     
@@ -27,7 +27,7 @@ function mostrarFavoritos() {
                 const tr = document.createElement('tr');
                 tr.classList.add('datos');
                 tr.dataset.fecha = fecha; 
-                tr.dataset.index = i;// le asignamos un index a la moneda para poder encontrarla en el array
+                tr.dataset.index = i;
                 const datosMoneda = ['', moneda.moneda, moneda.compra, moneda.venta, ''];
                 for (let z = 0; z < datosMoneda.length; z++) {
                     const td = document.createElement('td');

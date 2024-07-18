@@ -12,6 +12,10 @@
     <link rel="icon" href="img/Dolar(2).ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/informes.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript" >
+        emailjs.init('Lg_Tdf__q3AssxpIQ')
+    </script>
     <title>Informes - DolarNet</title>
 </head>
 
@@ -49,7 +53,7 @@
                         <p>Compartir información</p>
                     </button><!-- aca puede ir etiqueta a -->
                 </div>
-                <div class="contenedor-tb-informes">
+                <div class="contenedor-tb-informes" id="message">
                     <table class="table-informes">
                         <thead>
                             <tr>
@@ -72,14 +76,14 @@
             <div class="grafica-informes">
                 <canvas id="miGrafico" width="400" height="400"></canvas>
             </div>
-            <div id="formulario-datos">
+            <form id="formulario-datos">
                 <h3>Datos del destinatario</h3>
                 <label for="name">Nombre</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="to_name" id="to_name" required>
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
-                <button>Enviar</button>
-            </div>
+                <input type="email" name="to_email" id="to_email" required>
+                <input type="submit" id="button" value="Send Email" >
+            </form>
         </main>
     </div>
     <footer class="footer">

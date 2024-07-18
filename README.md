@@ -83,6 +83,8 @@ Seccion informes:
 Seccion Contacto:
 *en la seccion contacto utilizamos la libreria emailjs para que el usuario pueda enviar un mensaje. El email registrado es el de Gerardo Herrera.(hgerardo@gmail.com)
 
-
+Guerrero Joaquín,
+Ramos Federico,
+Servin Agustín
 
 
