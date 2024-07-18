@@ -264,6 +264,27 @@ document.addEventListener('DOMContentLoaded', function() {
     .addEventListener('submit', function(event) {
     event.preventDefault();
 
+    function formatJSONForEmail(jsonData) {
+        let formattedText = '';
+    
+        for (let fecha in jsonData) {
+            formattedText += `Fecha: ${fecha}\n`;
+    
+            jsonData[fecha].forEach(cotizacion => {
+                formattedText += `Moneda: ${cotizacion.nombre}\n`;
+                formattedText += `Compra: ${cotizacion.compra}\n`;
+                formattedText += `Venta: ${cotizacion.venta}\n\n`;
+            });
+    
+            formattedText += '\n';
+        }
+    
+        return formattedText;
+    }
+
+    const textTabla = document.getElementById('message');
+    textTabla.value = formatJSONForEmail(monedasGuardadas);
+
     btn.value = 'Sending...';
 
     const serviceID = 'default_service';
