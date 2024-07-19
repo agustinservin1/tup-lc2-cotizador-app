@@ -269,7 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         for (let fecha in jsonData) {
             formattedText += `Fecha: ${fecha}\n`;
-    
             jsonData[fecha].forEach(cotizacion => {
                 formattedText += `Moneda: ${cotizacion.nombre}\n`;
                 formattedText += `Compra: ${cotizacion.compra}\n`;
@@ -299,4 +298,23 @@ document.addEventListener('DOMContentLoaded', function() {
         alert(JSON.stringify(err));
         });
     });
+
+    const formCompartirInfo = document.getElementById('formulario-datos');
+
+    function openForm() {
+        const buttonCompartirInfo = document.getElementById('btn-compartir')
+
+        buttonCompartirInfo.addEventListener('click', () => {
+            formCompartirInfo.style.display = 'flex'
+        })
+    }
+
+    function closeForm() {
+        const buttonCloseForm = document.getElementById('close-form');
+        buttonCloseForm.addEventListener('click', () => {
+            formCompartirInfo.style.display = 'none'
+        } )
+    }
+    openForm();
+    closeForm();
 });
