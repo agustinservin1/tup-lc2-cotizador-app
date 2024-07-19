@@ -237,11 +237,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         const celdaFlecha = document.createElement('td');
                         const iconoFlecha = document.createElement('i');
-                        iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
-                        iconoFlecha.style.color = '#63E6BE'; // Color verde
+                        const fechas = Object.keys(objetoInforme[seleccion]);
+                        
+                        if (fechas.length > 1) {
+                            const fechaAnterior = fechas[fechas.length - 2];
+                            const fechaReciente = fechas[fechas.length - 1];
+                            const ventaAnterior = objetoInforme[seleccion][fechaAnterior][0].venta;
+                            const ventaReciente = objetoInforme[seleccion][fechaReciente][0].venta;
+                            
+                            if (ventaReciente > ventaAnterior) {
+                                iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
+                                iconoFlecha.style.color = '#63E6BE'; // Color verde
+                            }
+                            else if(ventaReciente === ventaAnterior){
+                                iconoFlecha.classList.add('fa-solid','fa-minus')
+                                iconoFlecha.style.color = '#000000;'// Guion
+                            }
+                            else{
+                                iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-down');
+                                iconoFlecha.style.color = '#FF6B6B'; // Color rojo
+                            }
+                        }
+                        else{
+                            iconoFlecha.classList.add('fa-solid','fa-minus')
+                            iconoFlecha.style.color = '#000000;'// Guion
+                        }
+                        
                         celdaFlecha.appendChild(iconoFlecha);
                         fila.appendChild(celdaFlecha);
-
                         tablaInforme.appendChild(fila);
                     });
                 });
