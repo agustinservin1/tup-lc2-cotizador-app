@@ -2,8 +2,8 @@ let monedasGuardadas = JSON.parse(localStorage.getItem("monedasGuardadas")) || {
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log(monedasGuardadas);
-    mostrarFavoritos();
     validarContenido()
+    mostrarFavoritos();
 });
 
 function mostrarFavoritos() {
@@ -59,13 +59,12 @@ function eliminarFavorito(event) {
     const index = tr.dataset.index;
     
     monedasGuardadas[fecha].splice(index, 1);
-
     if (monedasGuardadas[fecha].length === 0) {
         delete monedasGuardadas[fecha];
     }
     localStorage.setItem('monedasGuardadas', JSON.stringify(monedasGuardadas));
-    mostrarFavoritos();
     validarContenido()
+    mostrarFavoritos();
 }
 
 function imprimirTabla() {
@@ -87,8 +86,6 @@ function validarContenido(){
         h2.innerText = "No existen monedas Guardadas"
         div.appendChild(h2)
     }
-    // else{
-    //     div.style.display = 'none'
-    // }
+    
     
 }

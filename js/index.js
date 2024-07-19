@@ -4,7 +4,7 @@ let cotizacionesApi = {};
 document.addEventListener('DOMContentLoaded', () => {
   consultarCotizaciones()
   setInterval(consultarCotizaciones, 5*60*1000);
-
+  
 
   const selectMoneda = document.getElementById("moneda");
   selectMoneda.addEventListener("change", () => {
@@ -138,7 +138,7 @@ function guardarMonedas(moneda, data) {
   const index = monedasGuardadas[fecha].findIndex(cotizacion => cotizacion.moneda === moneda);
 
   if (index !== -1) {
-    monedasGuardadas[fecha].splice(index, 1);
+    monedasGuardadas[fecha].splice(index, 1); //validación favoritos
   } else {
     monedasGuardadas[fecha].push({
       moneda,
@@ -146,7 +146,7 @@ function guardarMonedas(moneda, data) {
       venta: data.venta,
       nombre: data.nombre,
       fechaActualizacion: data.fechaActualizacion
-    });
+   });
   };
   if (monedasGuardadas[fecha].length === 0) {
     delete monedasGuardadas[fecha];

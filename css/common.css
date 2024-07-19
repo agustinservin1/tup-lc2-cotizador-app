@@ -352,9 +352,9 @@ main {
 }
 
 #mensaje-error-moneda{
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     border-radius: 12px;
-    background-color: rgb(227, 130, 130);
+    background-color: rgb(241, 236, 236);
 }
 #mensaje-error-moneda h2 {
     padding: 32px;

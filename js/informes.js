@@ -183,7 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 titulo.textContent = nombreMoneda;
                 tablaInforme.appendChild(titulo);
 
-                Object.keys(objetoInforme[moneda]).forEach(fecha => {
+                const fechas = Object.keys(objetoInforme[moneda]);
+                let ventaAnterior = null;
+
+                fechas.forEach(fecha => {
                     const cotizaciones = objetoInforme[moneda][fecha];
                     cotizaciones.forEach(cotizacion => {
                         const { compra, venta } = cotizacion;
@@ -204,18 +207,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         const celdaFlecha = document.createElement('td');
                         const iconoFlecha = document.createElement('i');
-                        
+
+                        if (ventaAnterior === null) {
+                            iconoFlecha.classList.add('fa-solid', 'fa-minus');
+                            iconoFlecha.style.color = '#000000'; // Guion
+                        } else {
+                            if (venta > ventaAnterior) {
+                                iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
+                                iconoFlecha.style.color = '#63E6BE'; // Color verde
+                            } else if (venta < ventaAnterior) {
+                                iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-down');
+                                iconoFlecha.style.color = '#FF6B6B'; // Color rojo
+                            } else {
+                                iconoFlecha.classList.add('fa-solid', 'fa-minus');
+                                iconoFlecha.style.color = '#000000'; // Guion
+                            }
+                        }
+
                         celdaFlecha.appendChild(iconoFlecha);
                         fila.appendChild(celdaFlecha);
-
                         tablaInforme.appendChild(fila);
+
+                        ventaAnterior = venta;
                     });
                 });
             }
         } else {
             if (objetoInforme[seleccion]) {
                 console.log(`Cargando datos para: ${seleccion}`);
-                Object.keys(objetoInforme[seleccion]).forEach(fecha => {
+                const fechas = Object.keys(objetoInforme[seleccion]);
+                let ventaAnterior = null;
+
+                fechas.forEach(fecha => {
                     const cotizaciones = objetoInforme[seleccion][fecha];
                     cotizaciones.forEach(cotizacion => {
                         tituloMoneda.textContent = cotizacion.nombre;
@@ -237,35 +260,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         const celdaFlecha = document.createElement('td');
                         const iconoFlecha = document.createElement('i');
-                        const fechas = Object.keys(objetoInforme[seleccion]);
-                        
-                        if (fechas.length > 1) {
-                            const fechaAnterior = fechas[fechas.length - 2];
-                            const fechaReciente = fechas[fechas.length - 1];
-                            const ventaAnterior = objetoInforme[seleccion][fechaAnterior][0].venta;
-                            const ventaReciente = objetoInforme[seleccion][fechaReciente][0].venta;
-                            
-                            if (ventaReciente > ventaAnterior) {
+
+                        if (ventaAnterior === null) {
+                            iconoFlecha.classList.add('fa-solid', 'fa-minus');
+                            iconoFlecha.style.color = '#000000'; // Guion
+                        } else {
+                            if (venta > ventaAnterior) {
                                 iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-up');
                                 iconoFlecha.style.color = '#63E6BE'; // Color verde
-                            }
-                            else if(ventaReciente === ventaAnterior){
-                                iconoFlecha.classList.add('fa-solid','fa-minus')
-                                iconoFlecha.style.color = '#000000;'// Guion
-                            }
-                            else{
+                            } else if (venta < ventaAnterior) {
                                 iconoFlecha.classList.add('fa-solid', 'fa-arrow-trend-down');
                                 iconoFlecha.style.color = '#FF6B6B'; // Color rojo
+                            } else {
+                                iconoFlecha.classList.add('fa-solid', 'fa-minus');
+                                iconoFlecha.style.color = '#000000'; // Guion
                             }
                         }
-                        else{
-                            iconoFlecha.classList.add('fa-solid','fa-minus')
-                            iconoFlecha.style.color = '#000000;'// Guion
-                        }
-                        
+
                         celdaFlecha.appendChild(iconoFlecha);
                         fila.appendChild(celdaFlecha);
                         tablaInforme.appendChild(fila);
+
+                        ventaAnterior = venta;
                     });
                 });
             } else {
@@ -273,6 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+
 
   
     const seleccionInicial = 'todas';
