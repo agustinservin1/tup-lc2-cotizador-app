@@ -317,4 +317,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     openForm();
     closeForm();
+
+    function validarContenido(){
+        const contenidoMain = document.querySelector('.main-informe')
+        const div = document.getElementById('mensaje-error-moneda')
+        if(Object.keys(monedasGuardadas).length === 0){
+            const tituloInforme = document.getElementById('titulo-informes')
+            tituloInforme.style.display = 'none'
+            contenidoMain.style.display = 'none'
+            const h2 = document.createElement('h2')
+            h2.innerText = "No existen monedas Guardadas"
+            div.appendChild(h2)
+        }
+        else{
+            div.style.display = 'none'
+        }
+    }
+    validarContenido()
 });

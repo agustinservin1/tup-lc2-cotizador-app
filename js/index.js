@@ -148,6 +148,9 @@ function guardarMonedas(moneda, data) {
       fechaActualizacion: data.fechaActualizacion
     });
   };
+  if (monedasGuardadas[fecha].length === 0) {
+    delete monedasGuardadas[fecha];
+  }
   localStorage.setItem("monedasGuardadas", JSON.stringify(monedasGuardadas));
 }
 

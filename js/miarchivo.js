@@ -3,6 +3,7 @@ let monedasGuardadas = JSON.parse(localStorage.getItem("monedasGuardadas")) || {
 document.addEventListener("DOMContentLoaded", () => {
     console.log(monedasGuardadas);
     mostrarFavoritos();
+    validarContenido()
 });
 
 function mostrarFavoritos() {
@@ -64,6 +65,7 @@ function eliminarFavorito(event) {
     }
     localStorage.setItem('monedasGuardadas', JSON.stringify(monedasGuardadas));
     mostrarFavoritos();
+    validarContenido()
 }
 
 function imprimirTabla() {
@@ -75,3 +77,18 @@ function imprimirTabla() {
     document.body.innerHTML = originalContenido;
 }
 
+function validarContenido(){
+    const contenidoMain = document.querySelector('.tabla')
+    const div = document.getElementById('mensaje-error-moneda')
+    if(Object.keys(monedasGuardadas).length === 0){
+        contenidoMain.style.display = 'none'
+        const h2 = document.createElement('h2')
+
+        h2.innerText = "No existen monedas Guardadas"
+        div.appendChild(h2)
+    }
+    // else{
+    //     div.style.display = 'none'
+    // }
+    
+}
